@@ -1,0 +1,20 @@
+{
+  "name": "fakebook",
+  "version": "1.0.0",
+  "description": "A fullstack application designed to mimic facebook in a fake and fun way",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheInfamousGrim/Fakebook.git"
+  },
+  "author": "George Fincher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheInfamousGrim/Fakebook/issues"
+  },
+  "homepage": "https://github.com/TheInfamousGrim/Fakebook#readme"
+}
