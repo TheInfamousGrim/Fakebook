@@ -3,6 +3,9 @@ const { Schema, model } = require('mongoose');
 const { ObjectId } = Schema;
 
 const postSchema = new Schema({
+    createdAt: {
+        type: String,
+    },
     type: {
         type: String,
         enum: ['profilePicture', 'coverPicture', null],

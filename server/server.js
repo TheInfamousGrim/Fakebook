@@ -1,4 +1,4 @@
-/* ------------------------------ node modules ------------------------------ */
+/* --------------------------- dependency imports --------------------------- */
 const express = require('express');
 // Import environment variables
 require('dotenv').config();
@@ -9,25 +9,13 @@ const path = require('path');
 // Import CORS
 const cors = require('cors');
 
-console.log(process.env.NODE);
-
 /* --------------------------- database and schema -------------------------- */
 // Import typeDefs and resolvers
-// const { typeDefs, resolvers } = require('./schemas');
+const { typeDefs, resolvers } = require('./schemas');
+
+console.log(resolvers);
 // Import the connection to your db
 const db = require('./config/connection');
-
-const typeDefs = gql`
-    type Query {
-        sayHi: String!
-    }
-`;
-
-const resolvers = {
-  Query: {
-    sayHi: () => 'Hello big boi',
-  },
-};
 
 /* ------------------------------ server setup ------------------------------ */
 // Get the port you wish to use
@@ -56,16 +44,18 @@ app.use(cors());
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
-  await server.start();
-  server.applyMiddleware({ app });
+    await server.start();
+    server.applyMiddleware({ app });
 
-  db.once('open', () => {
-    app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`);
-      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-    });
+    db.once('open', () => {
+        app.listen(PORT, () => {
+            console.log(`API server running on port ${PORT}!`);
+            console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+        });
     });
 };
+
+console.log(typeDefs);
 
 // Call the async function to start the server
 startApolloServer(typeDefs, resolvers);

@@ -9,18 +9,18 @@ const typeDefs = gql`
         email: String!
         password: String!
         gender: String!
-        phoneNumber: String!
+        phone_number: String!
+        birth_year: Int!
+        birth_month: Int!
+        birth_day: Int!
         picture: String
         cover: String
-        birthYear: Int!
-        birthMonth: Int!
-        birthDay: Int!
         friends: [User]
         following: [User]
         followers: [User]
         requests: [User]
         search: [User]
-        userDetails: [UserDetails]
+        user_details: UserDetails
         savedPosts: [Post]
     }
 
@@ -31,26 +31,27 @@ const typeDefs = gql`
 
     type UserDetails {
         _id: ID!
-        createdAt: String!
+        created_at: String!
         bio: String
         otherName: String
         job: String
         workplace: String
-        highSchool: String
+        highschool: String
         college: String
-        currentCity: String
+        current_city: String
         hometown: String
         relationShip: String
         instagram: String
+        user: User!
     }
 
     type Post {
         _id: ID!
-        createdAt: String!
+        created_at: String!
+        user: User!
         type: String
         text: String
         images: [String]
-        user: User
         background: String
         reacts: [React]
         comments: [Comment]
@@ -58,9 +59,39 @@ const typeDefs = gql`
 
     type Comment {
         _id: ID!
-        createdAt: String!
+        created_at: String!
+        comment_by: User!
         text: String
         image: String
-        commentBy: User
+    }
+
+    type React {
+        _id: ID!
+        created_at: String!
+        react: String!
+        post: Post!
+        user: User!
+    }
+
+    input RegisterInput {
+        first_name: String!
+        last_name: String!
+        email: String!
+        password: String!
+        gender: String!
+        phone_number: String!
+        birth_year: Int!
+        birth_month: Int!
+        birth_day: Int!
+    }
+
+    type Query {
+        getPosts: [Post]
+    }
+
+    type Mutation {
+        register(registerInput: RegisterInput): Auth!
     }
 `;
+
+module.exports = typeDefs;
