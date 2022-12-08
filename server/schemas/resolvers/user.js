@@ -1,12 +1,40 @@
 const bcrypt = require('bcrypt');
 const { UserInputError } = require('apollo-server-express');
 
-const { validateRegisterInput } = require('../../utils/validate');
+const { validateRegisterInput, validateUserLogin } = require('../../utils/validate');
 const User = require('../../models/User');
 const { signToken } = require('../../utils/auth');
 
 module.exports = {
     Mutation: {
+        async login(_, { email, password }) {
+            const { errors, valid } = validateUserLogin(email, password);
+            if (!valid) {
+                throw new UserInputError('Errors', { errors });
+            }
+
+            const user = await User.findOne({ email });
+
+            if (!user) {
+                errors.general = 'User not found';
+                throw new UserInputError('User not found', { errors });
+            }
+
+            const match = await bcrypt.compare(password, user.password);
+            if (!match) {
+                errors.general = 'Incorrect password, please try again';
+                throw new UserInputError('Incorrect password please try again', { errors });
+            }
+
+            const token = signToken(user);
+
+            return {
+                ...user._doc,
+                id: user._id,
+                token,
+            };
+        },
+
         async register(
             _,
             {
