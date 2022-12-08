@@ -9,7 +9,7 @@ const path = require('path');
 // Import CORS
 const cors = require('cors');
 
-console.log(process.env.NODE)
+console.log(process.env.NODE);
 
 /* --------------------------- database and schema -------------------------- */
 // Import typeDefs and resolvers
@@ -21,13 +21,13 @@ const typeDefs = gql`
     type Query {
         sayHi: String!
     }
-`
+`;
 
 const resolvers = {
-    Query: {
-        sayHi: () => 'Hello big boi'
-    }
-}
+  Query: {
+    sayHi: () => 'Hello big boi',
+  },
+};
 
 /* ------------------------------ server setup ------------------------------ */
 // Get the port you wish to use
@@ -36,8 +36,8 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 // Create a new apollo server
 const server = new ApolloServer({
-        typeDefs,
-        resolvers,
+    typeDefs,
+    resolvers,
 });
 
 app.use(express.urlencoded({ extended: false }));
@@ -48,7 +48,6 @@ app.use(express.json());
 // This is where you import your middleware
 // const { authMiddleware } = require('./utils/auth');
 
-
 // Configure CORS
 app.use(cors());
 
@@ -57,15 +56,14 @@ app.use(cors());
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
-    await server.start();
-    server.applyMiddleware({ app });
-    
-    db.once('open', () => {
-        app.listen(PORT, () => {
-            console.log(`API server running on port ${PORT}!`);
-            console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-        });
-        
+  await server.start();
+  server.applyMiddleware({ app });
+
+  db.once('open', () => {
+    app.listen(PORT, () => {
+      console.log(`API server running on port ${PORT}!`);
+      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+    });
     });
 };
 

@@ -26,12 +26,12 @@ const typeDefs = gql`
 
     type Auth {
         token: ID!
-        user: User 
+        user: User
     }
 
     type UserDetails {
         _id: ID!
-        createdAt: String! 
+        createdAt: String!
         bio: String
         otherName: String
         job: String
@@ -41,7 +41,7 @@ const typeDefs = gql`
         currentCity: String
         hometown: String
         relationShip: String
-        instagram: String 
+        instagram: String
     }
 
     type Post {
@@ -53,7 +53,7 @@ const typeDefs = gql`
         user: User
         background: String
         reacts: [React]
-        comments: [Comment] 
+        comments: [Comment]
     }
 
     type Comment {
@@ -63,6 +63,4 @@ const typeDefs = gql`
         image: String
         commentBy: User
     }
-
-
-`
+`;
