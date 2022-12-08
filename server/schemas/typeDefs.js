@@ -78,6 +78,7 @@ const typeDefs = gql`
         last_name: String!
         email: String!
         password: String!
+        confirmPassword: String!
         gender: String!
         phone_number: String!
         birth_year: Int!
@@ -91,6 +92,7 @@ const typeDefs = gql`
 
     type Mutation {
         register(registerInput: RegisterInput): Auth!
+        login(email: String!, password: String!): Auth!
     }
 `;
 

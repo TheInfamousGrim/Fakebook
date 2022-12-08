@@ -13,7 +13,6 @@ const cors = require('cors');
 // Import typeDefs and resolvers
 const { typeDefs, resolvers } = require('./schemas');
 
-console.log(resolvers);
 // Import the connection to your db
 const db = require('./config/connection');
 
@@ -54,8 +53,6 @@ const startApolloServer = async (typeDefs, resolvers) => {
         });
     });
 };
-
-console.log(typeDefs);
 
 // Call the async function to start the server
 startApolloServer(typeDefs, resolvers);
