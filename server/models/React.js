@@ -11,11 +11,11 @@ const reactSchema = new Schema({
         enum: ['like', 'love', 'haha', 'sad', 'angry', 'wow'],
         required: true,
     },
-    postRef: {
+    postId: {
         type: ObjectId,
         ref: 'Post',
     },
-    reactBy: {
+    userId: {
         type: ObjectId,
         ref: 'User',
     },

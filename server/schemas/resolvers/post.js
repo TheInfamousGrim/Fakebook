@@ -1,14 +1,19 @@
+const { AuthenticationError, UserInputError } = require('apollo-server-express');
+
 const Post = require('../../models/Post');
+const User = require('../../models/User');
 const checkAuth = require('../../utils/check-auth');
+const { validateUserPost } = require('../../utils/validate');
+const getObjectId = require('../../utils/getObjectId');
 
 module.exports = {
     Query: {
         // Get all user posts
         async getPosts() {
             try {
-                const posts = await Post.find();
+                const posts = await Post.find().sort({ createdAt: -1 });
                 return posts;
-            } catch {
+            } catch (err) {
                 throw new Error(err);
             }
         },
@@ -30,22 +35,51 @@ module.exports = {
         },
     },
     Mutation: {
-        async createPost(_, { body }, context) {
-            // Check that there is a user
+        async createPost(_, { text, type, images, background }, context) {
             const user = checkAuth(context);
 
-            // Create the post data
+            const { firstName, lastName, profilePicture } = await User.findById(user.data._id);
+
+            if (text.trim() === '') {
+                throw new Error('Post body must not be empty');
+            }
+
             const newPost = new Post({
-                body,
-                user: user._id,
-                email: user.email,
                 createdAt: new Date().toISOString(),
+                userId: user.data._id,
+                firstName,
+                lastName,
+                profilePicture,
+                text,
+                type,
+                images,
+                background,
             });
 
-            // Save the post to the db
             const post = await newPost.save();
 
+            context.pubsub.publish('NEW_POST', {
+                newPost: post,
+            });
+
             return post;
+        },
+
+        async deletePost(_, { postId }, context) {
+            const user = checkAuth(context);
+
+            try {
+                const post = await Post.findById(postId);
+
+                // Compare the loggedIn userId with the userId attached to the post
+                if (user.data._id === post.userId.toString()) {
+                    await post.delete();
+                    return 'Post deleted successfully';
+                }
+                throw new AuthenticationError('This is not your post 🙊');
+            } catch (err) {
+                throw new Error(err);
+            }
         },
     },
 };

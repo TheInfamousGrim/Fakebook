@@ -32,6 +32,7 @@ const typeDefs = gql`
     type UserDetails {
         _id: ID!
         createdAt: String!
+        userID: String!
         bio: String
         otherName: String
         job: String
@@ -42,25 +43,32 @@ const typeDefs = gql`
         hometown: String
         relationship: String
         instagram: String
-        user: User!
     }
 
     type Post {
         _id: ID!
         createdAt: String!
-        user: User!
+        userId: String!
+        firstName: String
+        lastName: String
+        profilePic: String
         type: String
         text: String
         images: [String]
         background: String
         reacts: [React]
+        reactCount: Int
         comments: [Comment]
+        commentCount: Int
     }
 
     type Comment {
         _id: ID!
         createdAt: String!
-        commentBy: User!
+        userID: String!
+        firstName: String
+        lastName: String
+        profilePicture: String
         text: String
         image: String
     }
@@ -68,9 +76,9 @@ const typeDefs = gql`
     type React {
         _id: ID!
         createdAt: String!
+        userId: String!
+        postId: String!
         react: String!
-        post: Post!
-        user: User!
     }
 
     input RegisterInput {
@@ -94,7 +102,7 @@ const typeDefs = gql`
     type Mutation {
         register(registerInput: RegisterInput): Auth!
         login(email: String!, password: String!): Auth!
-        createPost(body: String!): Post!
+        createPost(text: String!, type: String, images: [String], background: String): Post!
         deletePost(postId: ID!): String!
     }
 `;

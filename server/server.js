@@ -3,17 +3,17 @@ const express = require('express');
 // Import environment variables
 require('dotenv').config();
 // Use Apollo server
-const { ApolloServer, gql } = require('apollo-server-express');
-// Use path to create paths to certain directories
-const path = require('path');
+const { ApolloServer } = require('apollo-server-express');
+// Use graphql subscriptions
+const { PubSub } = require('graphql-subscriptions');
 // Import CORS
 const cors = require('cors');
 
 /* ----------------------------- module imports ----------------------------- */
 // Import typeDefs and resolvers
 const { typeDefs, resolvers } = require('./schemas');
-// This is where you import your middleware
-const { authMiddleware } = require('./utils/auth');
+// Create a new public subscription
+const pubsub = new PubSub();
 
 /* -------------------------------- database -------------------------------- */
 // Import the connection to your db
@@ -28,7 +28,7 @@ const app = express();
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: authMiddleware,
+    context: ({ req }) => ({ req, pubsub }),
 });
 
 app.use(express.urlencoded({ extended: false }));

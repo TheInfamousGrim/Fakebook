@@ -28,12 +28,12 @@ const validateRegisterInput = (
 
     // Check the first name field isn't empty
     if (firstName.trim() === '') {
-        errors.first_name = 'Username must not be empty';
+        errors.firstName = 'Username must not be empty';
     }
 
     // Check the last name field isn't empty
     if (lastName.trim() === '') {
-        errors.last_name = 'Username must not be empty';
+        errors.lastName = 'Username must not be empty';
     }
 
     // Check the email field isn't empty
@@ -56,17 +56,17 @@ const validateRegisterInput = (
 
     // Check the birth year field has been filled in
     if (birthYear === '') {
-        errors.birth_year = 'Please enter your year of birth';
+        errors.birthYear = 'Please enter your year of birth';
     }
 
     // Check that the birth month field has been filled in
     if (birthMonth === '') {
-        errors.birth_month = 'Please enter your month of birth';
+        errors.birthMonth = 'Please enter your month of birth';
     }
 
     // Check that the birth day field has been filled in
     if (birthDay === '') {
-        errors.birth_day = 'Please enter your day of birth';
+        errors.birthDay = 'Please enter your day of birth';
     }
 
     return {
@@ -88,4 +88,16 @@ const validateUserLogin = (email, password) => {
     };
 };
 
-module.exports = { validateRegisterInput, validateUserLogin };
+const validateUserPost = (text) => {
+    const errors = {};
+    if (text.trim() === '') {
+        errors.post = 'Post must contain at least 1 character of text';
+    }
+
+    return {
+        errors,
+        valid: Object.keys(errors).length < 1,
+    };
+};
+
+module.exports = { validateRegisterInput, validateUserLogin, validateUserPost };

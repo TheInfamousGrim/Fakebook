@@ -33,7 +33,7 @@ const userSchema = new Schema({
         required: [true, 'password is required'],
         minlength: 8,
     },
-    picture: {
+    profilePicture: {
         type: String,
         trim: true,
         default: 'https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png',

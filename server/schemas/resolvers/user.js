@@ -8,33 +8,40 @@ const { signToken } = require('../../utils/auth');
 module.exports = {
     Mutation: {
         async login(_, { email, password }) {
+            // Validate if the user has done the correct inputs
             const { errors, valid } = validateUserLogin(email, password);
             if (!valid) {
                 throw new UserInputError('Errors', { errors });
             }
-
+            // Find the user by email
             const user = await User.findOne({ email });
 
+            // If there is no user found throw an error
             if (!user) {
                 errors.general = 'User not found';
                 throw new UserInputError('User not found', { errors });
             }
 
+            // Decrypt the user password and compare them
             const match = await bcrypt.compare(password, user.password);
+            // If the password is incorrect throw an error
             if (!match) {
                 errors.general = 'Incorrect password, please try again';
                 throw new UserInputError('Incorrect password please try again', { errors });
             }
 
+            // Get a JWT token for the user
             const token = signToken(user);
 
+            // Return all this user info
             return {
-                ...user._doc,
+                user,
                 id: user._id,
                 token,
             };
         },
 
+        // User registration
         async register(
             _,
             {
