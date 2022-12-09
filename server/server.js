@@ -9,10 +9,13 @@ const path = require('path');
 // Import CORS
 const cors = require('cors');
 
-/* --------------------------- database and schema -------------------------- */
+/* ----------------------------- module imports ----------------------------- */
 // Import typeDefs and resolvers
 const { typeDefs, resolvers } = require('./schemas');
+// This is where you import your middleware
+const { authMiddleware } = require('./utils/auth');
 
+/* -------------------------------- database -------------------------------- */
 // Import the connection to your db
 const db = require('./config/connection');
 
@@ -25,6 +28,7 @@ const app = express();
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    context: authMiddleware,
 });
 
 app.use(express.urlencoded({ extended: false }));
@@ -32,8 +36,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 /* --------------------------- application modules -------------------------- */
-// This is where you import your middleware
-// const { authMiddleware } = require('./utils/auth');
 
 // Configure CORS
 app.use(cors());

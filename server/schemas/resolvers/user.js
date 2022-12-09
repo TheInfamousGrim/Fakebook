@@ -39,29 +39,29 @@ module.exports = {
             _,
             {
                 registerInput: {
-                    first_name,
-                    last_name,
+                    firstName,
+                    lastName,
                     email,
                     password,
                     confirmPassword,
                     gender,
-                    birth_year,
-                    birth_month,
-                    birth_day,
+                    birthYear,
+                    birthMonth,
+                    birthDay,
                 },
             }
         ) {
             // Validate user data
             const { valid, errors } = validateRegisterInput(
-                first_name,
-                last_name,
+                firstName,
+                lastName,
                 email,
                 password,
                 confirmPassword,
                 gender,
-                birth_year,
-                birth_month,
-                birth_day
+                birthYear,
+                birthMonth,
+                birthDay
             );
             if (!valid) {
                 throw new UserInputError('Errors', { errors });
@@ -78,31 +78,31 @@ module.exports = {
             }
 
             // hash the password and create an auth token
-            password = await bcrypt.hash(password, 12);
+            const hashedPassword = await bcrypt.hash(password, 12);
 
             const newUser = new User({
                 createdAt: new Date().toISOString(),
-                first_name,
-                last_name,
+                firstName,
+                lastName,
                 email,
-                password,
+                password: hashedPassword,
                 gender,
-                birth_year,
-                birth_month,
-                birth_day,
+                birthYear,
+                birthMonth,
+                birthDay,
             });
 
             const res = await newUser.save();
             const { _id } = res;
             const token = signToken({
                 email,
-                first_name,
-                last_name,
+                firstName,
+                lastName,
                 _id,
             });
 
             return {
-                ...res._doc,
+                user: res,
                 id: _id,
                 token,
             };

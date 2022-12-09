@@ -13,26 +13,26 @@ const emailValidator = (email) => {
 };
 
 const validateRegisterInput = (
-    first_name,
-    last_name,
+    firstName,
+    lastName,
     email,
     password,
     confirmPassword,
     gender,
-    birth_year,
-    birth_month,
-    birth_day
+    birthYear,
+    birthMonth,
+    birthDay
 ) => {
     // Create an empty errors object
     const errors = {};
 
     // Check the first name field isn't empty
-    if (first_name.trim() === '') {
+    if (firstName.trim() === '') {
         errors.first_name = 'Username must not be empty';
     }
 
     // Check the last name field isn't empty
-    if (last_name.trim() === '') {
+    if (lastName.trim() === '') {
         errors.last_name = 'Username must not be empty';
     }
 
@@ -55,17 +55,17 @@ const validateRegisterInput = (
     }
 
     // Check the birth year field has been filled in
-    if (birth_year === '') {
+    if (birthYear === '') {
         errors.birth_year = 'Please enter your year of birth';
     }
 
     // Check that the birth month field has been filled in
-    if (birth_month === '') {
+    if (birthMonth === '') {
         errors.birth_month = 'Please enter your month of birth';
     }
 
     // Check that the birth day field has been filled in
-    if (birth_day === '') {
+    if (birthDay === '') {
         errors.birth_day = 'Please enter your day of birth';
     }
 

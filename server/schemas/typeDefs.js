@@ -4,15 +4,15 @@ const typeDefs = gql`
     type User {
         _id: ID!
         createdAt: String!
-        first_name: String!
-        last_name: String!
+        firstName: String!
+        lastName: String!
         email: String!
         password: String!
         gender: String!
-        phone_number: String!
-        birth_year: Int!
-        birth_month: Int!
-        birth_day: Int!
+        phoneNumber: String!
+        birthYear: Int!
+        birthMonth: Int!
+        birthDay: Int!
         picture: String
         cover: String
         friends: [User]
@@ -20,7 +20,7 @@ const typeDefs = gql`
         followers: [User]
         requests: [User]
         search: [User]
-        user_details: UserDetails
+        userDetails: UserDetails
         savedPosts: [Post]
     }
 
@@ -31,23 +31,23 @@ const typeDefs = gql`
 
     type UserDetails {
         _id: ID!
-        created_at: String!
+        createdAt: String!
         bio: String
         otherName: String
         job: String
         workplace: String
         highschool: String
         college: String
-        current_city: String
+        currentCity: String
         hometown: String
-        relationShip: String
+        relationship: String
         instagram: String
         user: User!
     }
 
     type Post {
         _id: ID!
-        created_at: String!
+        createdAt: String!
         user: User!
         type: String
         text: String
@@ -59,40 +59,43 @@ const typeDefs = gql`
 
     type Comment {
         _id: ID!
-        created_at: String!
-        comment_by: User!
+        createdAt: String!
+        commentBy: User!
         text: String
         image: String
     }
 
     type React {
         _id: ID!
-        created_at: String!
+        createdAt: String!
         react: String!
         post: Post!
         user: User!
     }
 
     input RegisterInput {
-        first_name: String!
-        last_name: String!
+        firstName: String!
+        lastName: String!
         email: String!
         password: String!
         confirmPassword: String!
         gender: String!
-        phone_number: String!
-        birth_year: Int!
-        birth_month: Int!
-        birth_day: Int!
+        phoneNumber: String!
+        birthYear: Int!
+        birthMonth: Int!
+        birthDay: Int!
     }
 
     type Query {
         getPosts: [Post]
+        getPost(postId: ID!): Post
     }
 
     type Mutation {
         register(registerInput: RegisterInput): Auth!
         login(email: String!, password: String!): Auth!
+        createPost(body: String!): Post!
+        deletePost(postId: ID!): String!
     }
 `;
 

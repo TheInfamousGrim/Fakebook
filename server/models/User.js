@@ -7,13 +7,13 @@ const userSchema = new Schema({
         type: Date,
         required: true,
     },
-    first_name: {
+    firstName: {
         type: String,
         required: [true, 'first name is required'],
         trim: true,
         text: true,
     },
-    last_name: {
+    lastName: {
         type: String,
         required: [true, 'last name is required'],
         trim: true,
@@ -47,17 +47,17 @@ const userSchema = new Schema({
         required: [true, 'gender is required'],
         trim: true,
     },
-    birth_year: {
+    birthYear: {
         type: Number,
         required: true,
         trim: true,
     },
-    birth_month: {
+    birthMonth: {
         type: Number,
         required: true,
         trim: true,
     },
-    birth_day: {
+    birthDay: {
         type: Number,
         required: true,
         trim: true,
@@ -116,13 +116,13 @@ const userSchema = new Schema({
         workplace: {
             type: String,
         },
-        high_school: {
+        highSchool: {
             type: String,
         },
         college: {
             type: String,
         },
-        current_city: {
+        currentCity: {
             type: String,
         },
         hometown: {
