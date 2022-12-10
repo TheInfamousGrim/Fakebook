@@ -13,7 +13,7 @@ const typeDefs = gql`
         birthYear: Int!
         birthMonth: Int!
         birthDay: Int!
-        picture: String
+        profilePicture: String
         cover: String
         friends: [User]
         following: [User]
@@ -26,13 +26,13 @@ const typeDefs = gql`
 
     type Auth {
         token: ID!
-        user: User
+        user: User!
     }
 
     type UserDetails {
         _id: ID!
         createdAt: String!
-        userID: String!
+        userId: String!
         bio: String
         otherName: String
         job: String
@@ -49,34 +49,39 @@ const typeDefs = gql`
         _id: ID!
         createdAt: String!
         userId: String!
-        firstName: String
-        lastName: String
-        profilePic: String
+        firstName: String!
+        lastName: String!
+        profilePic: String!
         type: String
-        text: String
-        images: [String]
+        text: String!
+        images: [String]!
         background: String
-        reacts: [React]
+        reacts: [React]!
         reactCount: Int
-        comments: [Comment]
+        comments: [Comment]!
         commentCount: Int
     }
 
     type Comment {
         _id: ID!
         createdAt: String!
-        userID: String!
+        userID: String
         firstName: String
         lastName: String
         profilePicture: String
         text: String
         image: String
+        reacts: [React]!
+        reactCount: Int
     }
 
     type React {
         _id: ID!
         createdAt: String!
         userId: String!
+        firstName: String!
+        lastName: String!
+        profilePic: String!
         postId: String!
         react: String!
     }
@@ -96,14 +101,20 @@ const typeDefs = gql`
 
     type Query {
         getPosts: [Post]
-        getPost(postId: ID!): Post
+        getPostById(postId: ID!): Post
     }
 
     type Mutation {
         register(registerInput: RegisterInput): Auth!
         login(email: String!, password: String!): Auth!
+
         createPost(text: String!, type: String, images: [String], background: String): Post!
         deletePost(postId: ID!): String!
+        reactToPost(postId: ID!, reactionType: String!): Post!
+
+        createComment(postId: ID!, text: String!, images: [String]): Post!
+        deleteComment(postId: ID!, commentId: ID!): Post!
+        reactToComment(postId: ID!, commentId: ID!, reactionType: String!): Comment!
     }
 `;
 

@@ -3,8 +3,6 @@ const { AuthenticationError, UserInputError } = require('apollo-server-express')
 const Post = require('../../models/Post');
 const User = require('../../models/User');
 const checkAuth = require('../../utils/check-auth');
-const { validateUserPost } = require('../../utils/validate');
-const getObjectId = require('../../utils/getObjectId');
 
 module.exports = {
     Query: {
@@ -18,10 +16,11 @@ module.exports = {
             }
         },
         // Get a post by it's ID
-        async getPost(_, { postId }) {
+        async getPostById(_, { postId }) {
             try {
                 // Await the post
                 const post = await Post.findById(postId);
+                console.log(post.userId);
                 // If the post exists return it
                 if (post) {
                     return post;

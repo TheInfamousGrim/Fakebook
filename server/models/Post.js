@@ -44,7 +44,83 @@ const postSchema = new Schema({
     },
     comments: [
         {
-            user: {
+            createdAt: {
+                type: Date,
+                required: true,
+            },
+            userId: {
+                type: ObjectId,
+                ref: 'User',
+                required: true,
+            },
+            firstName: {
+                type: String,
+                required: true,
+                trim: true,
+                text: true,
+            },
+            lastName: {
+                type: String,
+                required: true,
+                trim: true,
+                text: true,
+            },
+            profilePicture: {
+                type: String,
+                trim: true,
+                default: 'https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png',
+            },
+            text: {
+                type: String,
+            },
+            image: {
+                type: String,
+            },
+            reacts: [
+                {
+                    createdAt: {
+                        type: String,
+                        require: true,
+                    },
+                    userId: {
+                        type: ObjectId,
+                        ref: 'User',
+                        required: true,
+                    },
+                    firstName: {
+                        type: String,
+                        required: true,
+                        trim: true,
+                        text: true,
+                    },
+                    lastName: {
+                        type: String,
+                        required: true,
+                        trim: true,
+                        text: true,
+                    },
+                    profilePicture: {
+                        type: String,
+                        trim: true,
+                        default:
+                            'https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png',
+                    },
+                    reactionType: {
+                        type: String,
+                        enum: ['like', 'love', 'haha', 'sad', 'angry', 'wow'],
+                        required: true,
+                    },
+                },
+            ],
+        },
+    ],
+    reacts: [
+        {
+            createdAt: {
+                type: String,
+                required: true,
+            },
+            userId: {
                 type: ObjectId,
                 ref: 'User',
             },
@@ -65,36 +141,7 @@ const postSchema = new Schema({
                 trim: true,
                 default: 'https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png',
             },
-            comment: {
-                type: String,
-            },
-            image: {
-                type: String,
-            },
-            createdAt: {
-                type: Date,
-                required: true,
-            },
-            reacts: [
-                {
-                    createdAt: {
-                        type: String,
-                    },
-                    react: {
-                        type: String,
-                        enum: ['like', 'love', 'haha', 'sad', 'angry', 'wow'],
-                        required: true,
-                    },
-                },
-            ],
-        },
-    ],
-    reacts: [
-        {
-            createdAt: {
-                type: String,
-            },
-            react: {
+            reactionType: {
                 type: String,
                 enum: ['like', 'love', 'haha', 'sad', 'angry', 'wow'],
                 required: true,
