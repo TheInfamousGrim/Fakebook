@@ -39,6 +39,10 @@
   -webkit-text-size-adjust: 100%;
 }
 
+#root {
+  height: 100vh;
+}
+
 * {
   padding: 0;
   margin: 0;
