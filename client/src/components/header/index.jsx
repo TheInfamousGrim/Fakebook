@@ -24,7 +24,7 @@ function Header() {
             <div className="ml-64 text-sm ">2k Friends</div>
             <div></div>
           </div>
-          <div className="focus:outline-none h-9 w-28 flex items-center justify-center rounded-full bg-dGrey">
+          <div className="focus:outline-none h-9 w-28 flex items-center justify-center rounded-full bg-dGrey mt-4">
             <button className="flex flex-row items-center text-xs">
               <Edit />
               Edit profile
