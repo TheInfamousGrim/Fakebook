@@ -38,7 +38,7 @@ function Nav() {
           <Gaming />
         </button>
       </div>
-      <div className="flex space-x-2">
+      <div className="flex space-x-2 mr-2">
         <div className="w-10 bg-dGrey flex items-center justify-center rounded-full">
           <button className="focus:outline-none">
             <Plus />

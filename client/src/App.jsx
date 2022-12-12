@@ -8,18 +8,16 @@ import Photos from "./components/photos/index";
 function App() {
   return (
     <div>
-      <div className="z-0">
+      <div className="z-50">
         <Nav />
       </div>
-      <div className="z-10">
+      <div className="z-40">
         <Header />
       </div>
-      <div className="bg-dark px-52 grid grid-cols-12 mt-4 gap-4">
+      <div className="bg-dark px-52 grid grid-cols-12 mt-4 z-10 gap-4 ">
         <div className="col-span-5 col-start-1 mt-8">
           <Intro />
         </div>
-      </div>
-      <div className="bg-dark px-52 grid grid-cols-12 gap-4">
         <div className="col-span-5 col-start-1 mt-8">
           <Photos />
         </div>
