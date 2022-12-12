@@ -16,6 +16,7 @@ import Post from './components/post';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Home from './pages/Home';
+import Donation from './pages/Donation';
 
 // Create an httpLink to graphql
 const httpLink = createHttpLink({
@@ -38,6 +39,7 @@ function App() {
                     <Route path="/" element={<Profile />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/home" element={<Home />} />
+                    <Route path="/donation" element={<Donation />} />
                 </Routes>
             </Router>
             {/* <div className="antialiased">
