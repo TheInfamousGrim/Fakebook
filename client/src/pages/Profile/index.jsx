@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components
 import Nav from '../../components/Nav/index';
-import Header from '../../components/header/index';
+import Header from '../../components/Cover/index';
 import Intro from '../../components/intro/index';
 import Photos from '../../components/photos/index';
 import FriendList from '../../components/Friends';

@@ -1,15 +1,21 @@
 // External modules
 import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Components
 import Nav from './components/Nav/index';
-import Header from './components/header/index';
+import Header from './components/Cover/index';
 import Intro from './components/intro/index';
 import Photos from './components/photos/index';
 import CreatePost from './components/createPost';
 import FriendList from './components/Friends';
 import Post from './components/post';
+
+// Pages
+import Profile from './pages/Profile';
+import Login from './pages/Login';
+import Home from './pages/Home';
 
 // Create an httpLink to graphql
 const httpLink = createHttpLink({
@@ -27,7 +33,14 @@ const client = new ApolloClient({
 function App() {
     return (
         <ApolloProvider client={client}>
-            <div className="antialiased">
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Profile />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/home" element={<Home />} />
+                </Routes>
+            </Router>
+            {/* <div className="antialiased">
                 <Nav />
                 <Header />
                 <div className="bg-dark px-52 grid grid-cols-12 mt-4 z-10 gap-4 antialiased">
@@ -41,7 +54,7 @@ function App() {
                         <Post />
                     </div>
                 </div>
-            </div>
+            </div> */}
         </ApolloProvider>
     );
 }
