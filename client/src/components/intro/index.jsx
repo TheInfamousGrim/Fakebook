@@ -1,6 +1,7 @@
 import Location from "../../assets/svg/location";
 import Heart from "../../assets/svg/heart";
 import House from "../../assets/svg/house";
+
 export default function Intro() {
   return (
     <div className="shadow-fb w-full rounded-3xl bg-background p-4">
