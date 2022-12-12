@@ -78,11 +78,11 @@ const typeDefs = gql`
     type React {
         _id: ID!
         createdAt: String!
-        userId: String!
-        firstName: String!
-        lastName: String!
-        profilePic: String!
-        postId: String!
+        userId: String
+        firstName: String
+        lastName: String
+        profilePic: String
+        postId: String
         react: String!
     }
 
@@ -110,11 +110,11 @@ const typeDefs = gql`
 
         createPost(text: String!, type: String, images: [String], background: String): Post!
         deletePost(postId: ID!): String!
-        reactToPost(postId: ID!, reactionType: String!): Post!
+        reactToPost(postId: ID!, reactId: String, reactionType: String!): Post!
 
         createComment(postId: ID!, text: String!, images: [String]): Post!
         deleteComment(postId: ID!, commentId: ID!): Post!
-        reactToComment(postId: ID!, commentId: ID!, reactionType: String!): Comment!
+        reactToComment(postId: ID!, reactID: String, commentId: String, reactionType: String!): Comment!
     }
 `;
 

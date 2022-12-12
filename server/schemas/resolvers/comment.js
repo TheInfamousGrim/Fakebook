@@ -26,7 +26,6 @@ module.exports = {
 
             // Find the post the user wants to comment under
             const post = await Post.findById(postId);
-            console.log(`🔑 userID from context: ${user.data._id} 🔒`);
 
             // If their is a post to comment under save it to the db
             if (post) {
@@ -40,7 +39,6 @@ module.exports = {
                     image,
                 });
                 await post.save();
-                console.log(`userID from db: ${post.userId}`);
                 return post;
             }
             throw new UserInputError('Post not found');
@@ -59,7 +57,6 @@ module.exports = {
             if (post) {
                 // Get the index of where the comment is in the array
                 const commentIndex = post.comments.findIndex((commentDatabase) => commentDatabase.id === commentId);
-                console.log(post.comments[commentIndex]);
 
                 // If the comment belongs to the user remove it from the array
                 if (post.comments[commentIndex].userId.toString() === userId) {
@@ -71,6 +68,60 @@ module.exports = {
             } else {
                 throw new UserInputError(`Post not found`);
             }
+        },
+
+        async reactToComment(_, { postId, reactId, commentId, reactionType }, context) {
+            const user = checkAuth(context);
+            const userID = user.data._id;
+            const { firstName, lastName, profilePicture } = await User.findById(user.data._id);
+
+            const post = await Post.findById(postId);
+            if (post) {
+                // check if the comment exists
+                const commentIndex = post.comments.findIndex((commentDatabase) => commentDatabase.id === commentId);
+                if (commentIndex === -1) {
+                    throw new UserInputError('Comment not found');
+                }
+                if (
+                    post.comments[commentIndex].reacts.find(
+                        (react) => react.userId.toString() === userID && react.reactionType === reactionType
+                    )
+                ) {
+                    // Comment already has the same react so unreact to it
+                    post.comments[commentIndex].reacts = post.comments[commentIndex].reacts.filter(
+                        (react) => react.userId.toString() !== userID
+                    );
+                } else if (post.comments[commentIndex].reacts.find((react) => react.userId.toString() === userID)) {
+                    // Post has another type of reaction so the user is trying to change the reaction
+                    const reactIndex = post.comments[commentIndex].reacts.findIndex(
+                        (reactDatabase) => reactDatabase.id === reactId
+                    );
+
+                    // Remove just that one reaction
+                    post.comments[commentIndex].reacts.splice(reactIndex, 1);
+                    post.comments[commentIndex].reacts.push({
+                        createdAt: new Date().toISOString(),
+                        userId: userID,
+                        firstName,
+                        lastName,
+                        profilePicture,
+                        reactionType,
+                    });
+                } else {
+                    // Not reacted too, react to the post
+                    post.comments[commentIndex].reacts.push({
+                        createdAt: new Date().toISOString(),
+                        userId: userID,
+                        firstName,
+                        lastName,
+                        profilePicture,
+                        reactionType,
+                    });
+                }
+                await post.save();
+                return post;
+            }
+            throw new UserInputError('Post not found');
         },
     },
 };

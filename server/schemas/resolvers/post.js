@@ -1,4 +1,5 @@
 const { AuthenticationError, UserInputError } = require('apollo-server-express');
+const { arrayBuffer } = require('node:stream/consumers');
 
 const Post = require('../../models/Post');
 const User = require('../../models/User');
@@ -20,7 +21,6 @@ module.exports = {
             try {
                 // Await the post
                 const post = await Post.findById(postId);
-                console.log(post.userId);
                 // If the post exists return it
                 if (post) {
                     return post;
@@ -79,6 +79,51 @@ module.exports = {
             } catch (err) {
                 throw new Error(err);
             }
+        },
+
+        async reactToPost(_, { postId, reactId, reactionType }, context) {
+            const user = checkAuth(context);
+            const userID = user.data._id;
+            const { firstName, lastName, profilePicture } = await User.findById(user.data._id);
+
+            const post = await Post.findById(postId);
+            if (post) {
+                if (
+                    post.reacts.find(
+                        (react) => react.userId.toString() === userID && react.reactionType === reactionType
+                    )
+                ) {
+                    // Post already has the same react so unreact to it
+                    post.reacts = post.reacts.filter((react) => react.userId.toString() !== userID);
+                } else if (post.reacts.find((react) => react.userId.toString() === userID)) {
+                    // Post has another type of reaction so the user is trying to change the reaction
+                    const reactIndex = post.reacts.findIndex((reactDatabase) => reactDatabase.id === reactId);
+
+                    // Remove just that one reaction
+                    post.reacts.splice(reactIndex, 1);
+                    post.reacts.push({
+                        createdAt: new Date().toISOString(),
+                        userId: userID,
+                        firstName,
+                        lastName,
+                        profilePicture,
+                        reactionType,
+                    });
+                } else {
+                    // Not reacted too, react to the post
+                    post.reacts.push({
+                        createdAt: new Date().toISOString(),
+                        userId: userID,
+                        firstName,
+                        lastName,
+                        profilePicture,
+                        reactionType,
+                    });
+                }
+                await post.save();
+                return post;
+            }
+            throw new UserInputError('Post not found');
         },
     },
 };
