@@ -1,6 +1,7 @@
 import React from "react";
 import "../../index.css";
 import Edit from "../../assets/svg/edit";
+import Cover from "../../assets/svg/cover";
 
 function Header() {
   return (
@@ -12,6 +13,12 @@ function Header() {
             className="object-cover w-full h-full rounded-b-3xl rounded-t-3xl"
             alt="cover"
           />
+          <div className="focus:outline-none absolute bottom-10 right-9 h-9 w-40 flex items-center justify-center rounded-full bg-whitish mt-4">
+            <button className="flex flex-row items-center text-xs text-black">
+              <Cover />
+              <span className="ml-2 hover:text-pink">Edit Cover Photo</span>
+            </button>
+          </div>
           <img
             src="https://picsum.photos/id/1012/1000"
             className="object-cover absolute -bottom-20 left-20 border-4 border-dGrey w-40 h-40 rounded-full"
@@ -27,7 +34,7 @@ function Header() {
           <div className="focus:outline-none h-9 w-28 flex items-center justify-center rounded-full bg-dGrey mt-4">
             <button className="flex flex-row items-center text-xs">
               <Edit />
-              Edit profile
+              <span className="ml-2 hover:text-pink">Edit profile</span>
             </button>
           </div>
         </div>

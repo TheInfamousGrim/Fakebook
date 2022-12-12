@@ -4,9 +4,9 @@ import House from "../../assets/svg/house";
 export default function Intro() {
   return (
     <div className="shadow-fb w-full rounded-3xl bg-background p-4">
-      <div className="ml-1 text-3xl font-bold text-whitish"> Intro</div>
+      <div className="ml-1 text-3xl font-bold text-whitish "> Intro</div>
       <div className="focus:outline-none h-8 w-full flex items-center justify-center rounded-3xl bg-dGrey">
-        <button className="flex flex-row items-center ">
+        <button className="flex flex-row items-center hover:text-pink ">
           <b>Add Bio</b>
         </button>
       </div>
@@ -28,12 +28,12 @@ export default function Intro() {
           <b>Single</b>
         </span>
       </div>
-      <div className="focus:outline-none h-8 w-full flex items-center justify-center rounded-3xl bg-dGrey mt-4">
+      <div className="focus:outline-none h-8 w-full flex items-center justify-center rounded-3xl bg-dGrey mt-4 hover:text-pink">
         <button>
           <b>Edit Details</b>
         </button>
       </div>
-      <div className="focus:outline-none h-8 w-full flex items-center justify-center rounded-3xl bg-dGrey mt-4">
+      <div className="focus:outline-none h-8 w-full flex items-center justify-center rounded-3xl bg-dGrey mt-4 hover:text-pink">
         <button>
           <b>Add Hobbies</b>
         </button>

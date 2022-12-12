@@ -63,15 +63,15 @@ function Post() {
         <div className="flex justify-between items-center mt-4">
           <div className="w-1/3 flex items-center justify-center">
             <Likes />
-            <span className="ml-1 text-sm">Like</span>
+            <button className="ml-2 text-sm hover:text-pink">Like</button>
           </div>
           <div className="w-1/3 flex items-center justify-center">
             <Comment />
-            <span className="ml-1 text-sm">Comment</span>
+            <button className="ml-2 text-sm hover:text-pink">Comment</button>
           </div>
           <div className="w-1/3 flex items-center justify-center">
             <Share />
-            <span className="ml-1 text-sm">Share</span>
+            <button className="ml-2 text-sm hover:text-pink">Share</button>
           </div>
         </div>
         <div className="border border-whitish border-opacity-10 mt-4 mb-4" />
