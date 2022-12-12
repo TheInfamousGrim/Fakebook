@@ -4,7 +4,7 @@ import Edit from "../../assets/svg/edit";
 
 function Header() {
   return (
-    <div className="px-44">
+    <div className="px-32 mt-2">
       <div>
         <div className="relative w-full h-96 rounded-b flex justify-center">
           <img
