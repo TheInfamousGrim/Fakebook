@@ -1,6 +1,12 @@
 function Plus() {
   return (
-    <svg width="1em" height="1em" fill="#B0B3B8" viewBox="0 0 20 20">
+    <svg
+      className="hover:fill-pink"
+      width="1em"
+      height="1em"
+      fill="#B0B3B8"
+      viewBox="0 0 20 20"
+    >
       <g fillRule="nonzero">
         <path
           d="M449.5 361h13a1 1 0 100-2h-13a1 1 0 100 2z"
