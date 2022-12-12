@@ -1,20 +1,27 @@
 import React from "react";
 import "../../index.css";
 import Edit from "../../assets/svg/edit";
+import CoverIcon from "../../assets/svg/coverIcon";
 
 function Cover() {
   return (
-    <div className="bg-background">
-      <div className="">
-        <div className="relative h-96 rounded-b flex flex-col justify-center items-center max-w-screen-xl">
+    <div className="px-32 mt-2 bg-background">
+      <div>
+        <div className="relative w-full h-96 rounded-b flex justify-center">
           <img
             src="https://picsum.photos/id/1015/1500"
             className="object-cover w-full h-full rounded-b-3xl rounded-t-3xl"
             alt="cover"
           />
+          <div className="focus:outline-none absolute bottom-10 right-9 h-9 w-40 flex items-center justify-center rounded-full bg-whitish mt-4">
+            <button className="flex flex-row items-center text-xs text-black">
+              <CoverIcon />
+              <span className="ml-2 hover:text-pink">Edit Cover Photo</span>
+            </button>
+          </div>
           <img
             src="https://picsum.photos/id/1012/1000"
-            className="object-cover absolute -bottom-20 left-20 border-4 border-background w-40 h-40 rounded-full"
+            className="object-cover absolute -bottom-20 left-20 border-4 border-dGrey w-40 h-40 rounded-full"
             alt="user"
           />
         </div>
@@ -22,12 +29,12 @@ function Cover() {
           <div className="">
             <div className="ml-64 mt-4 text-3xl text-whitish">John Smith</div>
             <div className="ml-64 text-sm ">2k Friends</div>
-            <div />
+            <div></div>
           </div>
-          <div className="focus:outline-none h-9 w-28 mr-2 flex items-center justify-center rounded-full bg-dGrey mt-4">
+          <div className="focus:outline-none h-9 w-28 flex items-center justify-center rounded-full bg-dGrey mt-4">
             <button className="flex flex-row items-center text-xs">
               <Edit />
-              Edit profile
+              <span className="ml-2 hover:text-pink">Edit profile</span>
             </button>
           </div>
         </div>

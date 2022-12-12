@@ -1,4 +1,4 @@
-function Cover() {
+function CoverIcon() {
   return (
     <svg
       width="24"
@@ -21,4 +21,4 @@ function Cover() {
   );
 }
 
-export default Cover;
+export default CoverIcon;
