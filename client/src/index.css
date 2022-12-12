@@ -49,6 +49,10 @@ html {
   overflow-y: scroll;
 }
 
+body {
+  background-color: #18191a;
+}
+
 h1 {
   color: white;
 }

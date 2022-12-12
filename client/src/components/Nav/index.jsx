@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Menu } from 'semantic-ui-react';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -14,15 +14,30 @@ import HomeActive from '../../assets/svg/homeActive';
 import Gaming from '../../assets/svg/gaming';
 import Friends from '../../assets/svg/friends';
 
-function Nav() {
-    const [activeItem, setActiveItem] = useState('');
+// Helpers
+import useClickOutside from '../../utils/useClickOutside';
 
+// Component imports
+import UserMenu from './UserMenu';
+
+function Nav() {
+    // State
+    const [activeItem, setActiveItem] = useState('');
+    const [showUserMenu, setShowUserMenu] = useState(false);
+
+    // Refs
+    const userMenu = useRef(null);
+
+    // Handle functions
     const handleItemClick = (e, { name }) => {
         setActiveItem(name);
     };
+    useClickOutside(userMenu, () => {
+        setShowUserMenu(false);
+    });
 
     return (
-        <Menu className="h-14 w-screen flex justify-between shadow-fb px-4 py-2 border-b border-whitish border-opacity-20">
+        <Menu className="h-14 w-screen flex justify-between shadow-fb px-4 py-2 border-b border-whitish border-opacity-20 bg-background">
             <div className="flex">
                 <NavLink className="focus:outline-none mr-2" to="/home">
                     <Logo />
@@ -89,13 +104,18 @@ function Nav() {
                     </Menu.Item>
                 </li>
                 <li className="h-9 p-0.5 flex items-center justify-center">
-                    <Menu.Item className="focus:outline-none">
-                        {' '}
+                    <Menu.Item
+                        className="focus:outline-none cursor-pointer"
+                        onClick={() => {
+                            setShowUserMenu((prev) => !prev);
+                        }}
+                    >
                         <img
                             src="https://picsum.photos/seed/picsum/200/300"
                             className="rounded-full border w-10 h-10 border-dGrey"
                             alt="user-profile"
                         />
+                        {showUserMenu && <UserMenu />}
                     </Menu.Item>
                 </li>
             </ul>
