@@ -56,10 +56,10 @@ const typeDefs = gql`
         text: String!
         images: [String]!
         background: String
-        reacts: [React]!
-        reactCount: Int
         comments: [Comment]!
         commentCount: Int
+        reacts: [React]!
+        reactCount: Int
     }
 
     type Comment {
