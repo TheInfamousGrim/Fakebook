@@ -4,6 +4,7 @@ import Nav from "./components/Nav/index";
 import Header from "./components/header/index";
 import Intro from "./components/intro/index";
 import Photos from "./components/photos/index";
+import CreatePost from "./components/createPost";
 
 function App() {
   return (
@@ -18,8 +19,11 @@ function App() {
         <div className="col-span-5 col-start-1 mt-8">
           <Intro />
         </div>
-        <div className="col-span-5 col-start-1 mt-8">
+        <div className="col-span-5 col-start-1">
           <Photos />
+        </div>
+        <div className=" flex-row col-span-7 col-start-6 row-start-1 mt-8">
+          <CreatePost />
         </div>
       </div>
     </div>
