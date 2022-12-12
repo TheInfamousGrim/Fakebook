@@ -3,7 +3,7 @@ function Photos() {
     <div className="shadow-fb w-full rounded-3xl bg-background p-4">
       <div className="flex justify-between text-whitish">
         <div className="ml-1 text-3xl font-bold">Photos</div>
-        <button className="focus:outline-none text-whitish text-lg hover:text-pink">
+        <button className="focus:outline-none text-pink text-lg hover:text-whitish">
           See all photos
         </button>
       </div>
