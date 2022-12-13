@@ -30,3 +30,5 @@ Heres a screen shot of the webpage
 ## Links
 
 GitHub URL - https://github.com/TheInfamousGrim/Fakebook
+
+Application Presentation - https://docs.google.com/presentation/d/1Rta2vN_m-9yvN-eIV2dgOQQWlmUdiMbX/edit?usp=share_link&ouid=113505819441631790452&rtpof=true&sd=true
