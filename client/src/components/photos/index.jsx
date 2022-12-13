@@ -3,7 +3,7 @@ function Photos() {
         <div className="shadow-fb w-full rounded-3xl bg-background p-4">
             <div className="flex justify-between text-whitish">
                 <div className="ml-1 text-3xl font-bold">Photos</div>
-                <button className="focus:outline-none text-pink text-lg hover:text-whitish">See all photos</button>
+                <div className="focus:outline-none text-pink text-lg hover:text-whitish">See all photos</div>
             </div>
             <div className="grid grid-cols-3 flex gap-1.5 mt-4">
                 <img src="https://picsum.photos/id/1012/1500" alt="images" className="rounded-tl-lg" />

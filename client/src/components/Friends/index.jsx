@@ -3,7 +3,7 @@ function FriendList() {
         <div className="shadow-fb w-full rounded-3xl bg-background p-4">
             <div className="flex justify-between text-whitish">
                 <div className="ml-1 text-3xl font-bold mb-2">Friends</div>
-                <button className="focus:outline-none text-pink text-lg hover:text-whitish">See all friends</button>
+                <div className="focus:outline-none text-pink text-lg hover:text-whitish">See all friends</div>
             </div>
             <span className="text-sm ml-1">
                 2700 <b>Friends</b>
