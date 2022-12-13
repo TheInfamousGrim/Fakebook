@@ -1,16 +1,7 @@
 // External modules
 import React from 'react';
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, gql } from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-// Components
-import Nav from './components/Nav/index';
-import Header from './components/Cover/index';
-import Intro from './components/intro/index';
-import Photos from './components/photos/index';
-import CreatePost from './components/createPost';
-import FriendList from './components/Friends';
-import Post from './components/post';
 
 // Pages
 import Profile from './pages/Profile';
@@ -20,7 +11,7 @@ import Donation from './pages/Donation';
 
 // Create an httpLink to graphql
 const httpLink = createHttpLink({
-    uri: 'http://localhost:3001',
+    uri: 'http://localhost:4000/graphql',
 });
 
 // Create an authLink
@@ -42,21 +33,6 @@ function App() {
                     <Route path="/donation" element={<Donation />} />
                 </Routes>
             </Router>
-            {/* <div className="antialiased">
-                <Nav />
-                <Header />
-                <div className="bg-dark px-52 grid grid-cols-12 mt-4 z-10 gap-4 antialiased">
-                    <div className="col-span-5 col-start-1 row-start-1 mt-8 space-y-4">
-                        <Intro />
-                        <Photos />
-                        <FriendList />
-                    </div>
-                    <div className=" flex-row col-span-7 col-start-6 row-start-1 mt-8 space-y-4">
-                        <CreatePost />
-                        <Post />
-                    </div>
-                </div>
-            </div> */}
         </ApolloProvider>
     );
 }

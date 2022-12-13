@@ -7,12 +7,12 @@ export default function UserMenu() {
         <div className="p-2.5 absolute right-0 z-50 w-56 origin-top-right bg-background rounded-xl shadow-lg shadow-black">
             <Link to="/" className="flex flex-row items-center p-1.5 rounded-xl gap-1.5 hover:bg-hoverGrey">
                 <img
-                    src="https://picsum.photos/seed/picsum/200/300"
+                    src="https://res.cloudinary.com/dc2cdyype/image/upload/v1670931319/Fakebook/Rectangle_bqebp7.png"
                     className="rounded-full border w-10 h-10 border-dGrey"
                     alt="The current user"
                 />
                 <div className="flex flex-col justify-center">
-                    <span>George Fincher</span>
+                    <span>Mai Valentine</span>
                 </div>
             </Link>
             <div className="border border-whitish mt-6 border-opacity-20" />

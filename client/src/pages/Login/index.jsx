@@ -3,18 +3,23 @@ import React, { useState } from 'react';
 import { Form } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-// Gender option
-const genderOptions = [
-    { key: 'm', text: 'Male', value: 'male' },
-    { key: 'f', text: 'Female', value: 'female' },
-    { key: 'o', text: 'Other', value: 'other' },
-];
+// Custom hooks
+import { useForm } from '../../utils/hooks';
 
 function Login() {
-    const handleChange = (e, { value }) => setState({ value });
+    const [errors, setErrors] = useState({});
+
+    const { onChange, onSubmit, values } = useForm(loginUserCallback, {
+        username: '',
+        password: '',
+    });
+
+    function loginUserCallback() {
+        loginUser();
+    }
 
     return (
-        <div className="login bg-whitish text-blackText bg-login-pattern bg-no-repeat h-full">
+        <div className="login bg-whitish text-blackText bg-login-pattern bg-no-repeat h-screen flex justify-center items-center">
             <div className="login_wrapper h-4/5">
                 <div className="login_wrap">
                     <div className="login_1 w-96 my-0 mx-auto">
@@ -26,14 +31,24 @@ function Login() {
 
                     <div className="login_2 text-center">
                         <div className="login_2_wrap bg-white radius rounded-3xl p-4 my-4 flex flex-col items-center gap-7 w-96 h-fit my-0 mx-auto shadow-xl shadow-black">
-                            <Form className="w-full">
+                            <Form className="w-full" noValidate>
                                 <Form.Group widths="equal w-max">
                                     <Form.Input
                                         fluid
                                         placeholder="Email Address"
+                                        name="email"
                                         className="color-placeholderColor w-max"
+                                        value={values.email}
+                                        onChange={onChange}
                                     />
-                                    <Form.Input fluid placeholder="Password" className="color-placeholderColor w-max" />
+                                    <Form.Input
+                                        fluid
+                                        placeholder="Password"
+                                        name="password"
+                                        className="color-placeholderColor w-max"
+                                        value={values.password}
+                                        onChange={onChange}
+                                    />
                                 </Form.Group>
                                 <Form.Button
                                     type="submit"

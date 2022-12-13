@@ -111,7 +111,7 @@ function Nav() {
                         }}
                     >
                         <img
-                            src="https://picsum.photos/seed/picsum/200/300"
+                            src="https://res.cloudinary.com/dc2cdyype/image/upload/v1670931319/Fakebook/Rectangle_bqebp7.png"
                             className="rounded-full border w-10 h-10 border-dGrey"
                             alt="user-profile"
                         />
