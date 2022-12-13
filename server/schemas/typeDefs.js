@@ -51,10 +51,10 @@ const typeDefs = gql`
         userId: String!
         firstName: String!
         lastName: String!
-        profilePic: String!
+        profilePicture: String
         type: String
         text: String!
-        images: [String]!
+        image: String
         background: String
         comments: [Comment]!
         commentCount: Int
@@ -108,7 +108,7 @@ const typeDefs = gql`
         register(registerInput: RegisterInput): Auth!
         login(email: String!, password: String!): Auth!
 
-        createPost(text: String!, type: String, images: [String], background: String): Post!
+        createPost(text: String!, type: String, image: String, background: String): Post!
         deletePost(postId: ID!): String!
         reactToPost(postId: ID!, reactId: String, reactionType: String!): Post!
 

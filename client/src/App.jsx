@@ -1,16 +1,8 @@
 // External modules
 import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-// Components
-import Nav from './components/Nav/index';
-import Header from './components/Cover/index';
-import Intro from './components/intro/index';
-import Photos from './components/photos/index';
-import CreatePost from './components/createPost';
-import FriendList from './components/Friends';
-import Post from './components/post';
 
 // Pages
 import Profile from './pages/Profile';
@@ -18,45 +10,47 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Donation from './pages/Donation';
 
+// Authentication
+import { AuthProvider } from './context/auth';
+import AuthRoute from './utils/authRoute';
+
 // Create an httpLink to graphql
 const httpLink = createHttpLink({
-    uri: 'http://localhost:3001',
+    uri: 'http://localhost:4000/graphql',
 });
 
 // Create an authLink
+const authLink = setContext((_, { headers }) => {
+    // get the authentication token from local storage if it exists
+    const token = localStorage.getItem('id_token');
+    // return the headers to the context so httpLink can read them
+    return {
+        headers: {
+            ...headers,
+            authorization: token ? `Bearer ${token}` : '',
+        },
+    };
+});
 
 // Create an apollo client
 const client = new ApolloClient({
-    link: httpLink,
+    link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
 });
 
 function App() {
     return (
         <ApolloProvider client={client}>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<Profile />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/donation" element={<Donation />} />
-                </Routes>
-            </Router>
-            {/* <div className="antialiased">
-                <Nav />
-                <Header />
-                <div className="bg-dark px-52 grid grid-cols-12 mt-4 z-10 gap-4 antialiased">
-                    <div className="col-span-5 col-start-1 row-start-1 mt-8 space-y-4">
-                        <Intro />
-                        <Photos />
-                        <FriendList />
-                    </div>
-                    <div className=" flex-row col-span-7 col-start-6 row-start-1 mt-8 space-y-4">
-                        <CreatePost />
-                        <Post />
-                    </div>
-                </div>
-            </div> */}
+            <AuthProvider>
+                <Router>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/donation" element={<Donation />} />
+                    </Routes>
+                </Router>
+            </AuthProvider>
         </ApolloProvider>
     );
 }
