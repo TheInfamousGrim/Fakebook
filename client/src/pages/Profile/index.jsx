@@ -8,7 +8,7 @@ import Auth from '../../utils/Auth';
 import Nav from '../../components/Nav/index';
 import Cover from '../../components/Cover/index';
 import Intro from '../../components/intro/index';
-import Photos from '../../components/Photos/index';
+import Photos from '../../components/Photos';
 import FriendList from '../../components/Friends';
 import CreatePost from '../../components/createPost';
 import Post from '../../components/Post';
