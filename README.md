@@ -25,9 +25,9 @@ Fakebook is a Facebook clone where users can interact with each other.
 
 Heres a screen shot of the webpage
 
-![Functional App Screenshot #1]()
-![Functional App Screenshot #2]()
-![Functional App Screenshot #3]()
+![Functional App Screenshot #1](./assets/Images/Fakebook%20Screenshot%20%231.png)
+![Functional App Screenshot #2](./assets/Images/Fakebook%20Screenshot%20%232.png)
+![Functional App Screenshot #3](./assets/Images/Fakebook%20Screenshot%20%233.png)
 
 ## Links
 
