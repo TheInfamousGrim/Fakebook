@@ -2,12 +2,6 @@
 import React, { useState } from 'react';
 import { Form } from 'semantic-ui-react';
 
-const options = [
-    { key: 'm', text: 'Male', value: 'male' },
-    { key: 'f', text: 'Female', value: 'female' },
-    { key: 'o', text: 'Other', value: 'other' },
-];
-
 function SignInForm() {
     const [values, setValues] = useState({
         email: '',

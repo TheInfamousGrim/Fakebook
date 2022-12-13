@@ -1,22 +1,59 @@
 // Import dependencies
-import React, { useState } from 'react';
-import { Form } from 'semantic-ui-react';
+import React, { useState, useContext } from 'react';
+import { Form, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
 
 // Custom hooks
 import { useForm } from '../../utils/hooks';
 
+// Authorization
+import { AuthContext } from '../../context/auth';
+import Auth from '../../utils/Auth';
+
+// Import mutations
+import { LOGIN_USER, REGISTER_USER } from '../../utils/mutations.js';
+
 function Login() {
+    const context = useContext(AuthContext);
+    const [login, { error, data }] = useMutation(LOGIN_USER);
+    const [formState, setFormState] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({});
 
-    const { onChange, onSubmit, values } = useForm(loginUserCallback, {
-        username: '',
-        password: '',
-    });
+    const onChange = (event) => {
+        const { name, value } = event.target;
 
-    function loginUserCallback() {
-        loginUser();
-    }
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    };
+
+    // Submit form
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        console.log(formState);
+        try {
+            const { data } = await login({
+                variables: { ...formState },
+            });
+
+            Auth.login(data.login.token);
+            // clear form values
+            setFormState({
+                email: '',
+                password: '',
+            });
+            return window.location.assign('/');
+        } catch (e) {
+            console.error(e);
+            // clear form values
+            setFormState({
+                email: '',
+                password: '',
+            });
+        }
+    };
 
     return (
         <div className="login bg-whitish text-blackText bg-login-pattern bg-no-repeat h-screen flex justify-center items-center">
@@ -31,36 +68,38 @@ function Login() {
 
                     <div className="login_2 text-center">
                         <div className="login_2_wrap bg-white radius rounded-3xl p-4 my-4 flex flex-col items-center gap-7 w-96 h-fit my-0 mx-auto shadow-xl shadow-black">
-                            <Form className="w-full" noValidate>
-                                <Form.Group widths="equal w-max">
-                                    <Form.Input
+                            <form className="w-full" onSubmit={handleFormSubmit}>
+                                <div widths="equal w-full flex flex-col gap-5">
+                                    <input
                                         fluid
                                         placeholder="Email Address"
                                         name="email"
-                                        className="color-placeholderColor w-max"
-                                        value={values.email}
+                                        className="color-placeholderColor w-ful p-4 border-b-2 border-darkWhite"
+                                        value={formState.email}
+                                        error={!!errors.email}
                                         onChange={onChange}
                                     />
-                                    <Form.Input
+                                    <input
                                         fluid
                                         placeholder="Password"
                                         name="password"
-                                        className="color-placeholderColor w-max"
-                                        value={values.password}
+                                        className="color-placeholderColor w-ful p-4 border-b-2 border-darkWhite"
+                                        value={formState.password}
+                                        error={!!errors.password}
                                         onChange={onChange}
                                     />
-                                </Form.Group>
-                                <Form.Button
+                                </div>
+                                <button
                                     type="submit"
-                                    className="py-2 w-full rounded-2xl flex justify-center items-center bg-gradient-to-r from-darkerPink to-pink shadow-2xl text-white font-bold"
+                                    className="py-2 w-full rounded-2xl flex justify-center items-center bg-gradient-to-r from-darkerPink to-pink shadow-2xl text-white font-bold mt-5 cursor-pointer"
                                 >
                                     Login
-                                </Form.Button>
-                            </Form>
+                                </button>
+                            </form>
                             <div className="border border-grey rounded w-full" />
-                            <button className="py-3 w-full rounded-2xl flex justify-center items-center bg-green shadow-2xl text-white font-bold">
+                            <Button className="py-3 w-full rounded-2xl flex justify-center items-center bg-green shadow-2xl text-white font-bold">
                                 Create Account
-                            </button>
+                            </Button>
                         </div>
                         <p>Fake interface for a real interaction</p>
                     </div>

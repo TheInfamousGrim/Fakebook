@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+// Import auth
+import { AuthContext } from '../../context/auth';
+import Auth from '../../utils/Auth';
 
 // Components
 import Nav from '../../components/Nav/index';
@@ -10,6 +14,12 @@ import CreatePost from '../../components/createPost';
 import Post from '../../components/Post';
 
 function Profile() {
+    // Authorization
+    const { user } = useContext(AuthContext);
+    if (!Auth.loggedIn()) {
+        return window.location.assign('/login');
+    }
+
     return (
         <div className="antialiased">
             <Nav />

@@ -39,7 +39,7 @@ function Nav() {
     return (
         <Menu className="h-14 w-screen flex justify-between shadow-fb px-4 py-2 border-b border-whitish border-opacity-20 bg-background">
             <div className="flex">
-                <NavLink className="focus:outline-none mr-2" to="/home">
+                <NavLink className="focus:outline-none mr-2" to="/">
                     <Logo />
                 </NavLink>
                 <div className="h-10 w-60 flex items-centre rounded-full bg-dGrey p-3">
