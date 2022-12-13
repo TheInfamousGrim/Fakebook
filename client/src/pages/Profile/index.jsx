@@ -11,7 +11,7 @@ import Intro from '../../components/intro/index';
 import PhotoGallery from '../../components/PhotoGallery';
 import FriendList from '../../components/Friends';
 import CreatePost from '../../components/createPost';
-import Post from '../../components/Post';
+import UserPost from '../../components/UserPost';
 
 function Profile() {
     // Authorization
@@ -32,7 +32,7 @@ function Profile() {
                 </div>
                 <div className=" flex-row col-span-7 col-start-6 row-start-1 mt-8 space-y-4">
                     <CreatePost />
-                    <Post />
+                    <UserPost />
                 </div>
             </div>
         </div>
