@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "dev": "nodemon server/server.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,7 @@
     "url": "https://github.com/TheInfamousGrim/Fakebook/issues"
   },
   "homepage": "https://github.com/TheInfamousGrim/Fakebook#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
 }

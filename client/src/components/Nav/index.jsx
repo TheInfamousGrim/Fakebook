@@ -39,7 +39,7 @@ function Nav() {
     return (
         <Menu className="h-14 w-screen flex justify-between shadow-fb px-4 py-2 border-b border-whitish border-opacity-20 bg-background">
             <div className="flex">
-                <NavLink className="focus:outline-none mr-2" to="/home">
+                <NavLink className="focus:outline-none mr-2" to="/">
                     <Logo />
                 </NavLink>
                 <div className="h-10 w-60 flex items-centre rounded-full bg-dGrey p-3">
@@ -111,7 +111,7 @@ function Nav() {
                         }}
                     >
                         <img
-                            src="https://picsum.photos/seed/picsum/200/300"
+                            src="https://res.cloudinary.com/dc2cdyype/image/upload/v1670931319/Fakebook/Rectangle_bqebp7.png"
                             className="rounded-full border w-10 h-10 border-dGrey"
                             alt="user-profile"
                         />

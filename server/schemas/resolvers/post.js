@@ -34,7 +34,7 @@ module.exports = {
         },
     },
     Mutation: {
-        async createPost(_, { text, type, images, background }, context) {
+        async createPost(_, { text, type, image, background }, context) {
             const user = checkAuth(context);
 
             const { firstName, lastName, profilePicture } = await User.findById(user.data._id);
@@ -51,7 +51,7 @@ module.exports = {
                 profilePicture,
                 text,
                 type,
-                images,
+                image,
                 background,
             });
 

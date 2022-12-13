@@ -26,7 +26,7 @@ const postSchema = new Schema({
     profilePicture: {
         type: String,
         trim: true,
-        default: 'https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png',
+        default: 'https://res.cloudinary.com/dc2cdyype/image/upload/v1670931319/Fakebook/Rectangle_bqebp7.png',
     },
     type: {
         type: String,
@@ -36,8 +36,8 @@ const postSchema = new Schema({
     text: {
         type: String,
     },
-    images: {
-        type: Array,
+    image: {
+        type: String,
     },
     background: {
         type: String,
