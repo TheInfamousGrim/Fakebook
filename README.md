@@ -2,7 +2,10 @@
 
 ## Description
 
-A facebook clone that is designed to show off our skills in creating a fullstack application using the MERN stack.
+Fakebook is a Facebook clone where users can interact with each other.
+ - Users can make posts, comment, react, add each other as friends, and all that fun stuff.
+ - It is a full stack application using MERN stack.
+
 
 ## Technologies Used
 
