@@ -21,5 +21,8 @@
   "homepage": "https://github.com/TheInfamousGrim/Fakebook#readme",
   "devDependencies": {
     "concurrently": "^7.6.0"
+  },
+  "engines": {
+    "node": "16.17.0"
   }
 }
