@@ -21,7 +21,7 @@ const db = require('./config/connection');
 
 /* ------------------------------ server setup ------------------------------ */
 // Get the port you wish to use
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 // Use express as an app
 const app = express();
 // Create a new apollo server
