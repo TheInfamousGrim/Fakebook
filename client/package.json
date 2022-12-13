@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "serve-heroku": "vite --host 0.0.0.0 --port $PORT preview"
   },
   "dependencies": {
     "@apollo/client": "^3.7.2",
