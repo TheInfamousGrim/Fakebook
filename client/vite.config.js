@@ -8,6 +8,6 @@ export default defineConfig({
         port: 3001,
     },
     resolve: {
-        extensions: ['.js', '.mjs'],
+        extensions: ['.js', '.mjs', '.jsx'],
     },
 });
