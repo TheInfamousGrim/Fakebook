@@ -40,7 +40,7 @@ app.use(express.json());
 /* ------------------------------ initial route ----------------------------- */
 
 app.get('/', (req, res) => {
-    app.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
 /* --------------------------- application modules -------------------------- */
