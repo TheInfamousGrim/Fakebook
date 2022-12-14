@@ -16,7 +16,7 @@ import AuthRoute from './utils/authRoute';
 
 // Create an httpLink to graphql
 const httpLink = createHttpLink({
-    uri: 'https://agile-taiga-04390.herokuapp.com/',
+    uri: 'https://agile-taiga-04390.herokuapp.com/graphql',
 });
 
 // Create an authLink
