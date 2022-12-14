@@ -8,6 +8,8 @@ const { ApolloServer } = require('apollo-server-express');
 const { PubSub } = require('graphql-subscriptions');
 // Import CORS
 const cors = require('cors');
+// Import path
+const path = require('path');
 
 /* ----------------------------- module imports ----------------------------- */
 // Import typeDefs and resolvers
@@ -34,6 +36,12 @@ const server = new ApolloServer({
 app.use(express.urlencoded({ extended: false }));
 // Make sure express can parse JSON
 app.use(express.json());
+
+/* ------------------------------ initial route ----------------------------- */
+
+app.get('/', (req, res) => {
+    app.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
 
 /* --------------------------- application modules -------------------------- */
 
