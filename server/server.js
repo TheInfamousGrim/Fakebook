@@ -37,7 +37,9 @@ app.use(express.urlencoded({ extended: false }));
 // Make sure express can parse JSON
 app.use(express.json());
 
-/* ------------------------------ initial route ----------------------------- */
+/* ------------------------- prepare for deployment ------------------------- */
+
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'));

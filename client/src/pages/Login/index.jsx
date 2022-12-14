@@ -1,7 +1,7 @@
 // Import dependencies
 import React, { useState, useContext } from 'react';
 import { Form, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 // Custom hooks
@@ -44,7 +44,7 @@ function Login() {
                 email: '',
                 password: '',
             });
-            return window.location.assign('/');
+            return <Navigate to="/" />;
         } catch (e) {
             console.error(e);
             // clear form values

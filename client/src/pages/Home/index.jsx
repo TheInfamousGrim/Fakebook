@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
+import { Navigate, useParams } from 'react-router-dom';
 
 // Components
 import Nav from '../../components/Nav';
@@ -18,7 +19,7 @@ function Home() {
     // Authorization
     const { user } = useContext(AuthContext);
     if (!Auth.loggedIn()) {
-        return window.location.assign('/login');
+        return <Navigate to="/login" />;
     }
 
     const { loading, data } = useQuery(FETCH_POSTS_QUERY);

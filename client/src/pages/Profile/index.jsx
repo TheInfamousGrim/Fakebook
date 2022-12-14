@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 
 // Import auth
 import { AuthContext } from '../../context/auth';
@@ -17,7 +18,7 @@ function Profile() {
     // Authorization
     const { user } = useContext(AuthContext);
     if (!Auth.loggedIn()) {
-        return window.location.assign('/login');
+        return <Navigate to="/login" />;
     }
 
     return (
