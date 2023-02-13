@@ -1,6 +1,5 @@
 // Import dependencies
 import React, { useState, useContext } from 'react';
-import { Form, Button } from 'semantic-ui-react';
 import { Navigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
@@ -8,47 +7,51 @@ import { useMutation } from '@apollo/client';
 import { useForm } from '../../utils/hooks';
 
 // Authorization
-import { AuthContext } from '../../context/auth';
 import Auth from '../../utils/Auth';
 
 // Import mutations
 import { LOGIN_USER, REGISTER_USER } from '../../utils/mutations.js';
 
+// Import components
+import SignInForm from '../../components/SignInForm';
+
 function Login() {
-    const context = useContext(AuthContext);
+    // State
+    const [loginFormState, setLoginFormState] = useState({ email: '', password: '' });
+
+    // Mutations
     const [login, { error, data }] = useMutation(LOGIN_USER);
-    const [formState, setFormState] = useState({ email: '', password: '' });
+
+    // Errors
     const [errors, setErrors] = useState({});
 
-    const onChange = (event) => {
+    const onLoginFormChange = (event) => {
         const { name, value } = event.target;
 
-        setFormState({
-            ...formState,
+        setLoginFormState({
+            ...loginFormState,
             [name]: value,
         });
     };
 
-    // Submit form
-    const handleFormSubmit = async (event) => {
+    // Submit login form
+    const handleLoginFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formState);
         try {
             const { data } = await login({
-                variables: { ...formState },
+                variables: { ...loginFormState },
             });
 
             Auth.login(data.login.token);
             // clear form values
-            setFormState({
+            setLoginFormState({
                 email: '',
                 password: '',
             });
             return <Navigate to="/" />;
         } catch (e) {
-            console.error(e);
             // clear form values
-            setFormState({
+            setLoginFormState({
                 email: '',
                 password: '',
             });
@@ -58,7 +61,7 @@ function Login() {
     return (
         <div className="login bg-whitish text-blackText bg-login-pattern bg-no-repeat h-screen flex justify-center items-center">
             <div className="login_wrapper h-4/5">
-                <div className="login_wrap">
+                <div className="login_wrap flex flex-col gap-10">
                     <div className="login_1 w-96 my-0 mx-auto">
                         <h1 className="text-3xl">Fakebook</h1>
                         <span className="text-xl">
@@ -66,27 +69,34 @@ function Login() {
                         </span>
                     </div>
 
-                    <div className="login_2 text-center">
-                        <div className="login_2_wrap bg-white radius rounded-3xl p-4 my-4 flex flex-col items-center gap-7 w-96 h-fit my-0 mx-auto shadow-xl shadow-black">
-                            <form className="w-full" onSubmit={handleFormSubmit}>
+                    <SignInForm
+                        loginFormState={loginFormState}
+                        onLoginFormChange={onLoginFormChange}
+                        handleLoginFormSubmit={handleLoginFormSubmit}
+                        loginErrors={errors}
+                    />
+
+                    {/* <div className="login_2 text-center flex flex-col justify-apart gap-10">
+                        <div className="login_2_wrap bg-white radius rounded-3xl p-5 my-4 flex flex-col items-center gap-7 w-96 h-fit my-0 mx-auto shadow-xl shadow-black">
+                            <form className="w-full" onSubmit={handleLoginFormSubmit}>
                                 <div widths="equal w-full flex flex-col gap-5">
                                     <input
                                         fluid
                                         placeholder="Email Address"
                                         name="email"
-                                        className="color-placeholderColor w-ful p-4 border-b-2 border-darkWhite"
-                                        value={formState.email}
+                                        className="color-placeholderColor w-full p-4 border-b-2 border-darkWhite"
+                                        value={loginFormState.email}
                                         error={!!errors.email}
-                                        onChange={onChange}
+                                        onChange={onLoginFormChange}
                                     />
                                     <input
                                         fluid
                                         placeholder="Password"
                                         name="password"
-                                        className="color-placeholderColor w-ful p-4 border-b-2 border-darkWhite"
-                                        value={formState.password}
+                                        className="color-placeholderColor w-full p-4 border-b-2 border-darkWhite"
+                                        value={loginFormState.password}
                                         error={!!errors.password}
-                                        onChange={onChange}
+                                        onChange={onLoginFormChange}
                                     />
                                 </div>
                                 <button
@@ -102,7 +112,7 @@ function Login() {
                             </Button>
                         </div>
                         <p>Fake interface for a real interaction</p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
