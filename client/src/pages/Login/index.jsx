@@ -14,10 +14,12 @@ import { LOGIN_USER, REGISTER_USER } from '../../utils/mutations.js';
 
 // Import components
 import SignInForm from '../../components/SignInForm';
+import SignUpForm from '../../components/SignUpForm';
 
 function Login() {
     // State
     const [loginFormState, setLoginFormState] = useState({ email: '', password: '' });
+    const [registerModalOpen, setRegisterModalOpen] = useState(false);
 
     // Mutations
     const [login, { error, data }] = useMutation(LOGIN_USER);
@@ -26,6 +28,7 @@ function Login() {
     const [errors, setErrors] = useState({});
 
     const onLoginFormChange = (event) => {
+        event.stopPropagation();
         const { name, value } = event.target;
 
         setLoginFormState({
@@ -74,6 +77,7 @@ function Login() {
                         onLoginFormChange={onLoginFormChange}
                         handleLoginFormSubmit={handleLoginFormSubmit}
                         loginErrors={errors}
+                        setRegisterModalOpen={setRegisterModalOpen}
                     />
 
                     {/* <div className="login_2 text-center flex flex-col justify-apart gap-10">
@@ -115,6 +119,7 @@ function Login() {
                     </div> */}
                 </div>
             </div>
+            <SignUpForm registerModalOpen={registerModalOpen} setRegisterModalOpen={setRegisterModalOpen} />
         </div>
     );
 }
