@@ -43,9 +43,14 @@ const userSchema = new Schema({
         trim: true,
     },
     gender: {
-        type: String,
-        required: [true, 'gender is required'],
-        trim: true,
+        pronouns: {
+            type: String,
+            trim: true,
+        },
+        genderIdentity: {
+            type: String,
+            trim: true,
+        },
     },
     pronoun: {
         type: String,
