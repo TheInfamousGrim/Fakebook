@@ -7,7 +7,7 @@ export default function Intro() {
         <div className="shadow-fb w-full rounded-3xl bg-background p-4">
             <div className="ml-1 text-3xl font-bold text-whitish"> Intro</div>
             <div className="focus:outline-none h-8 w-full flex items-center justify-center rounded-3xl bg-dGrey">
-                <button className="flex flex-row items-center ">
+                <button type="button" className="flex flex-row items-center ">
                     <b>Add Bio</b>
                 </button>
             </div>
@@ -30,12 +30,12 @@ export default function Intro() {
                 </span>
             </div>
             <div className="focus:outline-none h-8 w-full flex items-center justify-center rounded-3xl bg-dGrey mt-4">
-                <button>
+                <button type="button">
                     <b>Edit Details</b>
                 </button>
             </div>
             <div className="focus:outline-none h-8 w-full flex items-center justify-center rounded-3xl bg-dGrey mt-4">
-                <button>
+                <button type="button">
                     <b>Add Hobbies</b>
                 </button>
             </div>

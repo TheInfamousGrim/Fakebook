@@ -9,6 +9,8 @@ const typeDefs = gql`
         email: String!
         password: String!
         gender: String!
+        pronoun: String
+        customGender: String
         phoneNumber: String!
         birthYear: Int!
         birthMonth: Int!
@@ -27,6 +29,12 @@ const typeDefs = gql`
     type Auth {
         token: ID!
         user: User!
+    }
+
+    type Gender {
+        _id: ID!
+        pronouns: String!
+        genderIdentity: String!
     }
 
     type UserDetails {

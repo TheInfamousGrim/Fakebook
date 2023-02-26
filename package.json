@@ -4,7 +4,7 @@
   "description": "A fullstack application designed to mimic facebook in a fake and fun way",
   "main": "index.js",
   "scripts": {
-    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
     "start": "node server/server.js --ignore client",
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build"

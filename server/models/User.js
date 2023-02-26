@@ -47,6 +47,14 @@ const userSchema = new Schema({
         required: [true, 'gender is required'],
         trim: true,
     },
+    pronoun: {
+        type: String,
+        trim: true,
+    },
+    customGender: {
+        type: String,
+        trim: true,
+    },
     birthYear: {
         type: Number,
         required: true,

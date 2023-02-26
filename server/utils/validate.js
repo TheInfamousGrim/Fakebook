@@ -1,4 +1,4 @@
-const emailValidator = (email) => {
+const emailValidator = (email, errors) => {
     // Check the email field isn't empty
     if (email.trim() === '') {
         errors.email = 'Email must not be empty';
@@ -37,7 +37,7 @@ const validateRegisterInput = (
     }
 
     // Check the email field isn't empty
-    emailValidator(email);
+    emailValidator(email, errors);
 
     // Check that the password field isn't empty
     if (password === '') {
