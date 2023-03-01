@@ -18,7 +18,8 @@ const validateRegisterInput = (
     email,
     password,
     confirmPassword,
-    gender,
+    pronoun,
+    genderIdentity,
     birthYear,
     birthMonth,
     birthDay
@@ -50,8 +51,13 @@ const validateRegisterInput = (
     }
 
     // Check that the gender field has been filled in
-    if (gender === '') {
-        errors.gender = 'Please select a gender that you indentify with';
+    if (genderIdentity === '') {
+        errors.genderIdentity = 'Please select a gender that you identify with';
+    }
+
+    // Check that the pronoun field has been filled in
+    if (pronoun === '') {
+        errors.pronoun = 'Please select pronouns that you identify with';
     }
 
     // Check the birth year field has been filled in

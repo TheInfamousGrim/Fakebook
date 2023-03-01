@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const { UserInputError } = require('apollo-server-express');
+const dayjs = require('dayjs');
 
 const { validateRegisterInput, validateUserLogin } = require('../../utils/validate');
 const User = require('../../models/User');
@@ -51,7 +52,8 @@ module.exports = {
                     email,
                     password,
                     confirmPassword,
-                    gender,
+                    pronoun,
+                    genderIdentity,
                     birthYear,
                     birthMonth,
                     birthDay,
@@ -59,13 +61,14 @@ module.exports = {
             }
         ) {
             // Validate user data
-            const { valid, errors } = validateRegisterInput(
+            const { errors, valid } = validateRegisterInput(
                 firstName,
                 lastName,
                 email,
                 password,
                 confirmPassword,
-                gender,
+                pronoun,
+                genderIdentity,
                 birthYear,
                 birthMonth,
                 birthDay
@@ -87,16 +90,20 @@ module.exports = {
             // hash the password and create an auth token
             const hashedPassword = await bcrypt.hash(password, 12);
 
+            // save birthday as ISO 8601 string
+            const birthday = dayjs(`${birthYear}-${birthMonth}-${birthDay}`).toISOString();
+
             const newUser = new User({
                 createdAt: new Date().toISOString(),
                 firstName,
                 lastName,
                 email,
                 password: hashedPassword,
-                gender,
-                birthYear,
-                birthMonth,
-                birthDay,
+                gender: {
+                    pronoun,
+                    genderIdentity,
+                },
+                birthday,
             });
 
             const res = await newUser.save();
