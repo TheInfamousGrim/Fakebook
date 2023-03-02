@@ -3,14 +3,11 @@ import React, { useState, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-// Custom hooks
-import { useForm } from '../../utils/hooks';
-
 // Authorization
 import Auth from '../../utils/Auth';
 
 // Import mutations
-import { LOGIN_USER, REGISTER_USER } from '../../utils/mutations.js';
+import { LOGIN_USER } from '../../utils/mutations.js';
 
 // Import components
 import SignInForm from '../../components/SignInForm';
@@ -79,44 +76,6 @@ function Login() {
                         loginErrors={errors}
                         setRegisterModalOpen={setRegisterModalOpen}
                     />
-
-                    {/* <div className="login_2 text-center flex flex-col justify-apart gap-10">
-                        <div className="login_2_wrap bg-white radius rounded-3xl p-5 my-4 flex flex-col items-center gap-7 w-96 h-fit my-0 mx-auto shadow-xl shadow-black">
-                            <form className="w-full" onSubmit={handleLoginFormSubmit}>
-                                <div widths="equal w-full flex flex-col gap-5">
-                                    <input
-                                        fluid
-                                        placeholder="Email Address"
-                                        name="email"
-                                        className="color-placeholderColor w-full p-4 border-b-2 border-darkWhite"
-                                        value={loginFormState.email}
-                                        error={!!errors.email}
-                                        onChange={onLoginFormChange}
-                                    />
-                                    <input
-                                        fluid
-                                        placeholder="Password"
-                                        name="password"
-                                        className="color-placeholderColor w-full p-4 border-b-2 border-darkWhite"
-                                        value={loginFormState.password}
-                                        error={!!errors.password}
-                                        onChange={onLoginFormChange}
-                                    />
-                                </div>
-                                <button
-                                    type="submit"
-                                    className="py-2 w-full rounded-2xl flex justify-center items-center bg-gradient-to-r from-darkerPink to-pink shadow-2xl text-white font-bold mt-5 cursor-pointer"
-                                >
-                                    Login
-                                </button>
-                            </form>
-                            <div className="border border-grey rounded w-full" />
-                            <Button className="py-3 w-full rounded-2xl flex justify-center items-center bg-green shadow-2xl text-white font-bold">
-                                Create Account
-                            </Button>
-                        </div>
-                        <p>Fake interface for a real interaction</p>
-                    </div> */}
                 </div>
             </div>
             <SignUpForm registerModalOpen={registerModalOpen} setRegisterModalOpen={setRegisterModalOpen} />

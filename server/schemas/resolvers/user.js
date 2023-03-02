@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const { UserInputError } = require('apollo-server-express');
 const dayjs = require('dayjs');
 
-const { validateRegisterInput, validateUserLogin } = require('../../utils/validate');
+const { validateAddUserInput, validateUserLogin } = require('../../utils/validate');
 const User = require('../../models/User');
 const { signToken } = require('../../utils/auth');
 
@@ -10,6 +10,7 @@ module.exports = {
     Mutation: {
         async login(_, { email, password }) {
             // Validate if the user has done the correct inputs
+            console.log('Running login');
             const { errors, valid } = validateUserLogin(email, password);
             if (!valid) {
                 throw new UserInputError('Errors', { errors });
@@ -43,10 +44,10 @@ module.exports = {
         },
 
         // User registration
-        async register(
+        async addUser(
             _,
             {
-                registerInput: {
+                addUserInput: {
                     firstName,
                     lastName,
                     email,
@@ -58,10 +59,12 @@ module.exports = {
                     birthMonth,
                     birthDay,
                 },
-            }
+            },
+            context,
+            info
         ) {
             // Validate user data
-            const { errors, valid } = validateRegisterInput(
+            const { errors, valid } = validateAddUserInput(
                 firstName,
                 lastName,
                 email,
@@ -73,7 +76,9 @@ module.exports = {
                 birthMonth,
                 birthDay
             );
+            console.log('running add user');
             if (!valid) {
+                console.log('bonk on user registration');
                 throw new UserInputError('Errors', { errors });
             }
 

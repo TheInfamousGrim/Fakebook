@@ -12,7 +12,7 @@ const emailValidator = (email, errors) => {
     }
 };
 
-const validateRegisterInput = (
+const validateAddUserInput = (
     firstName,
     lastName,
     email,
@@ -26,6 +26,7 @@ const validateRegisterInput = (
 ) => {
     // Create an empty errors object
     const errors = {};
+    console.log('running validation');
 
     // Check the first name field isn't empty
     if (firstName.trim() === '') {
@@ -106,4 +107,4 @@ const validateUserPost = (text) => {
     };
 };
 
-module.exports = { validateRegisterInput, validateUserLogin, validateUserPost };
+module.exports = { validateAddUserInput, validateUserLogin, validateUserPost };
