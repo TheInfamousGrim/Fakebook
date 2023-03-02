@@ -175,7 +175,7 @@ function SignUpForm({ registerModalOpen, setRegisterModalOpen }) {
             setRegistrationForm({
                 firstName: '',
                 lastName: '',
-                emailAddress: '',
+                email: '',
                 password: '',
                 confirmPassword: '',
                 birthDay: dayCurrent,
