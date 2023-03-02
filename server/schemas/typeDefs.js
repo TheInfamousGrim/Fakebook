@@ -8,7 +8,7 @@ const typeDefs = gql`
         lastName: String!
         email: String!
         password: String!
-        gender: String!
+        gender: Gender
         phoneNumber: String!
         birthYear: Int!
         birthMonth: Int!
@@ -27,6 +27,13 @@ const typeDefs = gql`
     type Auth {
         token: ID!
         user: User!
+    }
+
+    type Gender {
+        _id: ID!
+        userId: String!
+        pronouns: String!
+        genderIdentity: String!
     }
 
     type UserDetails {
@@ -86,14 +93,14 @@ const typeDefs = gql`
         react: String!
     }
 
-    input RegisterInput {
+    input AddUserInput {
         firstName: String!
         lastName: String!
         email: String!
         password: String!
         confirmPassword: String!
-        gender: String!
-        phoneNumber: String!
+        pronoun: String
+        genderIdentity: String!
         birthYear: Int!
         birthMonth: Int!
         birthDay: Int!
@@ -105,7 +112,7 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        register(registerInput: RegisterInput): Auth!
+        addUser(addUserInput: AddUserInput): Auth!
         login(email: String!, password: String!): Auth!
 
         createPost(text: String!, type: String, image: String, background: String): Post!

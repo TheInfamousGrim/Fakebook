@@ -1,4 +1,4 @@
-const emailValidator = (email) => {
+const emailValidator = (email, errors) => {
     // Check the email field isn't empty
     if (email.trim() === '') {
         errors.email = 'Email must not be empty';
@@ -12,19 +12,21 @@ const emailValidator = (email) => {
     }
 };
 
-const validateRegisterInput = (
+const validateAddUserInput = (
     firstName,
     lastName,
     email,
     password,
     confirmPassword,
-    gender,
+    pronoun,
+    genderIdentity,
     birthYear,
     birthMonth,
     birthDay
 ) => {
     // Create an empty errors object
     const errors = {};
+    console.log('running validation');
 
     // Check the first name field isn't empty
     if (firstName.trim() === '') {
@@ -37,7 +39,7 @@ const validateRegisterInput = (
     }
 
     // Check the email field isn't empty
-    emailValidator(email);
+    emailValidator(email, errors);
 
     // Check that the password field isn't empty
     if (password === '') {
@@ -50,8 +52,13 @@ const validateRegisterInput = (
     }
 
     // Check that the gender field has been filled in
-    if (gender === '') {
-        errors.gender = 'Please select a gender that you indentify with';
+    if (genderIdentity === '') {
+        errors.genderIdentity = 'Please select a gender that you identify with';
+    }
+
+    // Check that the pronoun field has been filled in
+    if (pronoun === '') {
+        errors.pronoun = 'Please select pronouns that you identify with';
     }
 
     // Check the birth year field has been filled in
@@ -100,4 +107,4 @@ const validateUserPost = (text) => {
     };
 };
 
-module.exports = { validateRegisterInput, validateUserLogin, validateUserPost };
+module.exports = { validateAddUserInput, validateUserLogin, validateUserPost };

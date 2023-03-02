@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt');
 const { UserInputError } = require('apollo-server-express');
+const dayjs = require('dayjs');
 
-const { validateRegisterInput, validateUserLogin } = require('../../utils/validate');
+const { validateAddUserInput, validateUserLogin } = require('../../utils/validate');
 const User = require('../../models/User');
 const { signToken } = require('../../utils/auth');
 
@@ -9,6 +10,7 @@ module.exports = {
     Mutation: {
         async login(_, { email, password }) {
             // Validate if the user has done the correct inputs
+            console.log('Running login');
             const { errors, valid } = validateUserLogin(email, password);
             if (!valid) {
                 throw new UserInputError('Errors', { errors });
@@ -42,35 +44,41 @@ module.exports = {
         },
 
         // User registration
-        async register(
+        async addUser(
             _,
             {
-                registerInput: {
+                addUserInput: {
                     firstName,
                     lastName,
                     email,
                     password,
                     confirmPassword,
-                    gender,
+                    pronoun,
+                    genderIdentity,
                     birthYear,
                     birthMonth,
                     birthDay,
                 },
-            }
+            },
+            context,
+            info
         ) {
             // Validate user data
-            const { valid, errors } = validateRegisterInput(
+            const { errors, valid } = validateAddUserInput(
                 firstName,
                 lastName,
                 email,
                 password,
                 confirmPassword,
-                gender,
+                pronoun,
+                genderIdentity,
                 birthYear,
                 birthMonth,
                 birthDay
             );
+            console.log('running add user');
             if (!valid) {
+                console.log('bonk on user registration');
                 throw new UserInputError('Errors', { errors });
             }
 
@@ -87,16 +95,20 @@ module.exports = {
             // hash the password and create an auth token
             const hashedPassword = await bcrypt.hash(password, 12);
 
+            // save birthday as ISO 8601 string
+            const birthday = dayjs(`${birthYear}-${birthMonth}-${birthDay}`).toISOString();
+
             const newUser = new User({
                 createdAt: new Date().toISOString(),
                 firstName,
                 lastName,
                 email,
                 password: hashedPassword,
-                gender,
-                birthYear,
-                birthMonth,
-                birthDay,
+                gender: {
+                    pronoun,
+                    genderIdentity,
+                },
+                birthday,
             });
 
             const res = await newUser.save();
