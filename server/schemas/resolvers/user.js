@@ -10,10 +10,11 @@ module.exports = {
     Mutation: {
         async login(_, { email, password }) {
             // Validate if the user has done the correct inputs
-            console.log('Running login');
+            console.log('Running login bby');
             const { errors, valid } = validateUserLogin(email, password);
+            console.log('bing bong');
             if (!valid) {
-                throw new UserInputError('Errors', { errors });
+                throw new UserInputError('There are some errors in the login input', { errors });
             }
             // Find the user by email
             const user = await User.findOne({ email });
@@ -78,7 +79,6 @@ module.exports = {
             );
             console.log('running add user');
             if (!valid) {
-                console.log('bonk on user registration');
                 throw new UserInputError('Errors', { errors });
             }
 

@@ -49,7 +49,7 @@ function Nav() {
             </div>
             <ul className="flex space-x-24">
                 <li className="focus:fill-pink border-pink hover:border-b-2 border-pink">
-                    <NavLink className="fill-pink" to="/home">
+                    <NavLink className="fill-pink" to="/">
                         {({ isActive }) => (isActive ? <HomeActive /> : <Home />)}
                     </NavLink>
                 </li>

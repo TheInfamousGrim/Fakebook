@@ -1,7 +1,7 @@
 // Import dependencies
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import { useMutation, ApolloError } from '@apollo/client';
 
 // Authorization
 import Auth from '../../utils/Auth';
@@ -18,11 +18,11 @@ function Login() {
     const [loginFormState, setLoginFormState] = useState({ email: '', password: '' });
     const [registerModalOpen, setRegisterModalOpen] = useState(false);
 
-    // Mutations
-    const [login, { error, data }] = useMutation(LOGIN_USER);
-
     // Errors
     const [errors, setErrors] = useState({});
+
+    // Mutations
+    const [login, { error, data }] = useMutation(LOGIN_USER, { errorPolicy: 'all' });
 
     const onLoginFormChange = (event) => {
         event.stopPropagation();
@@ -36,7 +36,6 @@ function Login() {
 
     // Submit login form
     const handleLoginFormSubmit = async (event) => {
-        event.preventDefault();
         try {
             const { data } = await login({
                 variables: { ...loginFormState },
@@ -51,10 +50,9 @@ function Login() {
             return <Navigate to="/" />;
         } catch (e) {
             // clear form values
-            setLoginFormState({
-                email: '',
-                password: '',
-            });
+            const formErrors = await error.graphQLErrors[0].extensions.errors;
+            setErrors(formErrors);
+            console.log(formErrors);
         }
     };
 
