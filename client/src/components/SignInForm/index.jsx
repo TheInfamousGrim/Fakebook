@@ -2,9 +2,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-// Components
-import FormErrors from '../formErrors';
-
 function SignInForm({ handleLoginFormSubmit, loginFormState, loginErrors, onLoginFormChange, setRegisterModalOpen }) {
     // Integrate react hook form
     const {
