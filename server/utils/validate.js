@@ -7,7 +7,7 @@ const emailValidator = (email, errors) => {
         const regex =
             /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
         if (!email.match(regex)) {
-            errors.email = 'Email must be a valid email address';
+            errors.email = 'You must enter a valid email address';
         }
     }
 };
@@ -30,12 +30,12 @@ const validateAddUserInput = (
 
     // Check the first name field isn't empty
     if (firstName.trim() === '') {
-        errors.firstName = 'Username must not be empty';
+        errors.firstName = 'First name must not be empty';
     }
 
     // Check the last name field isn't empty
     if (lastName.trim() === '') {
-        errors.lastName = 'Username must not be empty';
+        errors.lastName = 'Last name must not be empty';
     }
 
     // Check the email field isn't empty
@@ -84,7 +84,7 @@ const validateAddUserInput = (
 
 const validateUserLogin = (email, password) => {
     const errors = {};
-    emailValidator(email);
+    emailValidator(email, errors);
     if (password === '') {
         errors.password = 'Password must not be empty';
     }
