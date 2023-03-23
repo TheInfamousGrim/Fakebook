@@ -1,11 +1,15 @@
 # Fakebook
 
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
+![Last Commit to Current Repo](https://img.shields.io/github/last-commit/TheInfamousGrim/Fakebook)
+![Commits a month](https://img.shields.io/github/commit-activity/m/TheInfamousGrim/Fakebook)
+
 ## Description
 
 Fakebook is a Facebook clone where users can interact with each other.
- - Users can make posts, comment, react, add each other as friends, and all that fun stuff.
- - It is a full stack application using MERN stack.
 
+- Users can make posts, comment, react, add each other as friends, and all that fun stuff.
+- It is a full stack application using MERN stack.
 
 ## Technologies Used
 
