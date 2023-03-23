@@ -5,7 +5,7 @@ import Contact from '../Contacts';
 
 function Widgets() {
     const contacts = [
-        { src: 'https://links.papareact.com/f0p', name: 'Jeff Bezoz' },
+        { src: 'https://pbs.twimg.com/profile_images/1591558315254890500/ETIHb4Nl_400x400.jpg', name: 'Jeff Bezoz' },
         {
             src: 'https://pyxis.nymag.com/v1/imgs/51b/acd/a62a5ea65fec42cc83e77eb5f6c9886223-elon-.rsquare.w700.jpg',
             name: 'Elon Musk',

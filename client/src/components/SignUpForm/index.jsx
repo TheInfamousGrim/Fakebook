@@ -158,7 +158,6 @@ function SignUpForm({ registerModalOpen, setRegisterModalOpen }) {
             delete registrationFormInputs.customGender;
         }
 
-        console.log(registrationFormInputs);
 
         try {
             const { data } = await addUser({

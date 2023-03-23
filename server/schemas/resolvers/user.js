@@ -10,9 +10,7 @@ module.exports = {
     Mutation: {
         async login(_, { email, password }) {
             // Validate if the user has done the correct inputs
-            console.log('Running login bby');
             const { errors, valid } = validateUserLogin(email, password);
-            console.log('bing bong');
             if (!valid) {
                 throw new UserInputError('There are some errors in the login input', { errors });
             }
@@ -77,7 +75,6 @@ module.exports = {
                 birthMonth,
                 birthDay
             );
-            console.log('running add user');
             if (!valid) {
                 throw new UserInputError('Errors', { errors });
             }

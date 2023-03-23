@@ -26,7 +26,6 @@ const validateAddUserInput = (
 ) => {
     // Create an empty errors object
     const errors = {};
-    console.log('running validation');
 
     // Check the first name field isn't empty
     if (firstName.trim() === '') {

@@ -52,7 +52,6 @@ function Login() {
             // clear form values
             const formErrors = await error.graphQLErrors[0].extensions.errors;
             setErrors(formErrors);
-            console.log(formErrors);
         }
     };
 
