@@ -27,7 +27,7 @@ Fakebook is a Facebook clone where users can interact with each other.
 - It has a fully functioning GraphQL API setup using Apollo Server.
 - It is a full stack application using MERNG stack.
 
-[Link to application](https://agile-taiga-04390.herokuapp.com/login)
+[Link to application](https://agile-taiga-04390.herokuapp.com/)
 
 ### What did I Learn 🏫
 
