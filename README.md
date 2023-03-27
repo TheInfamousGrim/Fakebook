@@ -29,19 +29,6 @@ Fakebook is a Facebook clone where users can interact with each other.
 
 [Link to application](https://agile-taiga-04390.herokuapp.com/)
 
-### What did I Learn 🏫
-
-There was a lot that I learned. I also learned the benefits of using something like vite instead of CRA as it's much faster!
-
-I also learned how to use:
-
-- React hooks.
-- React props.
-- How to use FontAwesome in React.
-- Tailwind.
-- DaisyUI.
-- and much more!.
-
 ## ScreenShots
 
 ### Web App Screenshot
@@ -78,7 +65,7 @@ If you've followed these steps correctly then the application should be good to 
 
 ## Usage
 
-Link to live application: [Click here](https://agile-taiga-04390.herokuapp.com/login)
+Link to live application: [Click here](https://agile-taiga-04390.herokuapp.com/)
 
 Please follow these steps to use the application locally
 
